@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📸 Fotolab — Where Light Becomes Luxury ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="Fotolabstyling.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fotonav">
+        <div class="container-fluid">
+
+            <!-- LOGO -->
+            <a class="navbar-brand nav-logo" href="#">
+                <img src="FotoLabImages/FotolabLogo.png" alt="Logo">
+            </a>
+
+            <!-- Toggle -->
+            <button class="navbar-toggler text-gold" type="button" data-bs-toggle="collapse"
+                data-bs-target="#fotonavCollapse">
+                <img src="FotoLabImages/ToggleLogo.png" style="width:32px;">
+            </button>
+
+            <div class="collapse navbar-collapse" id="fotonavCollapse">
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+
+                    <!-- HOME -->
+                    <li class="nav-item">
+                        <a class="nav-link vip-link" href="index.html">
+                            <img src="FotoLabImages/HomeLogo.png" class="nav-icon"> Home
+                        </a>
+                    </li>
+
+                    <!-- CONTACT -->
+                    <li class="nav-item">
+                        <a class="nav-link vip-link" href="FotoLabContactPage.html">
+                            <img src="FotoLabImages/ContactLogo.png" class="nav-icon"> Contact
+                        </a>
+                    </li>
+
+                    <!-- PRODUCTS DROPDOWN -->
+                    <li class="nav-item dropdown d-flex align-items-center">
+
+                        <a class="nav-link vip-link pe-1" href="FotoLabProductsPage.html">
+                            <img src="FotoLabImages/ProductsLogo.png" class="nav-icon">
+                            <span>Products</span>
+                        </a>
+
+                        <a class="nav-link dropdown-toggle ps-1" href="#" id="productsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"
+                            style="display:flex; align-items:center; cursor: pointer;">
+                            <i class="bi bi-chevron-down"
+                                style="font-size: 12px; color: var(--gold); margin-top: 3px;"></i>
+                        </a>
+
+                        <ul class="dropdown-menu simple-dd" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=camera">Cameras</a></li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=lens">Lenses</a></li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=audio">Pro Audio</a></li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=memory">Memory Cards</a>
+                            </li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=tripod">Tripods</a></li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=lighting">Lighting</a></li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=bag">Bags & Cases</a></li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=memory">Memory Cards</a>
+                            </li>
+                            <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=accessory">Accessories</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- ABOUT -->
+                    <li class="nav-item">
+                        <a class="nav-link vip-link" href="FotoLabAboutPage.html">
+                            <img src="FotoLabImages/AboutUsLogo.png" class="nav-icon"> About
+                        </a>
+                    </li>
+
+                    <li class="nav-item d-flex align-items-center">
+                        <div class="search-wrapper">
+
+                            <img src="FotoLabImages/SearchLogo.png" class="search-icon">
+
+                            <input type="text" id="searchInput" class="search-input" placeholder="Search gear..."
+                                autocomplete="off" onkeyup="handleSearch(this.value)"
+                                onfocus="handleSearch(this.value)" />
+
+                            <div class="suggestions-box" id="suggestionsBox"></div>
+
+                        </div>
+                    </li>
+
+                    <!-- SIGN UP  -->
+                    <li class="nav-item">
+                        <a class="nav-link vip-link" href="javascript:void(0)" id="navSignupBtn">
+                            <img src="FotoLabImages/SignUpLogo.png" class="nav-icon"> Register
+                        </a>
+                    </li>
+
+                    <!-- SIGN IN -->
+                    <li class="nav-item">
+                        <a class="nav-link vip-link" href="javascript:void(0)" id="navSigninBtn">
+                            <img src="FotoLabImages/SignInLogo.png" class="nav-icon"> Login
+                        </a>
+                    </li>
+
+                    <!-- SUPPORT -->
+                    <li class="nav-item">
+                        <a class="nav-link vip-link" href="javascript:void(0)" id="supportBtn">
+                            <img src="FotoLabImages/SupportLogo.png" class="nav-icon"> Support
+                        </a>
+                    </li>
+
+                    <!-- CART -->
+
+                    <li class="nav-item" style="position:relative;" onclick="toggleCartDrawer()">
+                        <img src="FotoLabImages/CartLogo.png" class="cart-icon">
+                        <span id="navCartBadge" class="badge-count">0</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- REGISTER MODAL -->
+    <div id="signupModal" class="fotolab-modal" aria-hidden="true">
+        <div class="modal-inner">
+            <button class="modal-close" aria-label="Close Sign Up">✕</button>
+            <h3 class="modal-title">✨ Create Your Fotolab Account</h3>
+            <form id="signupForm" class="form-stack" novalidate>
+                <div class="input-group">
+                    <input type="text" id="regName" placeholder="Full name (Min 3 letters)" required>
+                    <div id="errName" class="error-text"></div>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="regEmail" placeholder="Email address" required disabled>
+                    <div id="errEmail" class="error-text"></div>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="regPhone" placeholder="Phone (0-9 only)" maxlength="11" required disabled>
+                    <div id="errPhone" class="error-text"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="regAddress" placeholder="Address" required disabled>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="regPostal" placeholder="Postal code" required disabled>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regPass" placeholder="Password (Strong)" required disabled>
+                    <div id="errPass" class="error-text"></div>
+                </div>
+                <button type="submit" id="btnRegister" class="btn-primary full">Create account</button>
+            </form>
+            <div id="signupMsg" class="success-msg" aria-live="polite" hidden></div>
+            <p class="center small">Already have an account? <a href="#" id="linkToSignin">Login</a></p>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="signinModal" class="fotolab-modal" aria-hidden="true">
+        <div class="modal-inner">
+            <button class="modal-close" aria-label="Close Sign In">✕</button>
+            <h3 class="modal-title">🔐 Login to Fotolab</h3>
+
+            <form id="signinForm" class="form-stack">
+                <input type="email" id="signinEmail" name="email" placeholder="Email address" required>
+                <input type="password" id="signinPassword" name="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary full">Login</button>
+            </form>
+
+            <div id="signinMsg" class="error-msg" aria-live="polite"></div>
+
+            <div id="userProfile" class="user-profile" hidden>
+                <img src="FotoLabImages/HanaLogo.png" alt="avatar">
+                <div>
+                    <p class="welcome">Welcome back, <span id="userNameShow"></span> 🎉</p>
+                    <p class="small dim" id="userEmailShow"></p>
+                </div>
+            </div>
+
+            <p class="center small">Don't have an account? <a href="#" id="linkToSignup">Create one</a></p>
+        </div>
+    </div>
+
+    <!-- CHATBOT BOX (hidden initially) -->
+    <div id="chatbotBox" class="chatbot-box" aria-hidden="true" role="dialog" aria-label="Support chat">
+        <div class="chatbot-header">
+            <div class="assistant">
+                <img src="FotoLabImages/ShinhyeLogo.png" alt="assistant" />
+                <div>
+                    <div class="assistant-name">Fotolab Support Assistant</div>
+                    <div class="assistant-sub" id="assistantSub">How can I help?</div>
+                </div>
+            </div>
+            <button class="chat-close" id="chatCloseBtn" aria-label="Close chat">✕</button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="bot-bubble">Hi! I'm Fotolab Support — how can I help you today?</div>
+        </div>
+
+        <div class="chat-footer">
+            <input id="chatInput" type="text" placeholder="Type a message..." aria-label="Type a message">
+            <button id="chatSendBtn" class="btn-send">➤</button>
+        </div>
+    </div>
+
+    <div class="luxury-wrapper">
+
+        <aside class="sidebar-filters">
+            <div class="refine-header"
+                style="display: flex; align-items: center; margin-bottom: 25px; border-bottom: 1px solid rgba(229, 192, 123, 0.2); padding-bottom: 15px;">
+
+                <i class="bi bi-funnel-fill"
+                    style="font-size: 26px; color: var(--gold); margin-right: 12px; filter: drop-shadow(0 0 8px var(--gold));"></i>
+
+                <h3 class="gold-text" style="margin: 0; font-family: 'Great Vibes', cursive; font-size: 32px;">Refine
+                    Selection</h3>
+
+            </div>
+
+            <div class="filter-section">
+                <h4>Brands</h4>
+                <div class="brand-tags">
+                    <button class="b-tag active" onclick="setBrand('all', this)">All</button>
+                    <button class="b-tag" onclick="setBrand('Canon', this)">Canon</button>
+                    <button class="b-tag" onclick="setBrand('Sony', this)">Sony</button>
+                    <button class="b-tag" onclick="setBrand('Nikon', this)">Nikon</button>
+                    <button class="b-tag" onclick="setBrand('Rode', this)">Rode</button>
+                    <button class="b-tag" onclick="setBrand('Manfrotto', this)">Manfrotto</button>
+                    <button class="b-tag" onclick="setBrand('Godox', this)">Godox</button>
+                    <button class="b-tag" onclick="setBrand('SanDisk', this)">SanDisk</button>
+                    <button class="b-tag" onclick="setBrand('Fujifilm', this)">Fujifilm</button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Category</h4>
+                <div class="cat-options">
+                    <label><input type="radio" name="cat" value="all" checked onchange="setCategory('all')"> All
+                        Collections</label>
+                    <label><input type="radio" name="cat" value="camera" onchange="setCategory('camera')">
+                        Cameras</label>
+                    <label><input type="radio" name="cat" value="lens" onchange="setCategory('lens')"> Lenses</label>
+                    <label><input type="radio" name="cat" value="audio" onchange="setCategory('audio')"> Pro
+                        Audio</label>
+                    <label><input type="radio" name="cat" value="tripod" onchange="setCategory('tripod')">
+                        Tripods</label>
+                    <label><input type="radio" name="cat" value="lighting" onchange="setCategory('lighting')">
+                        Lighting</label>
+                    <label><input type="radio" name="cat" value="bag" onchange="setCategory('bag')"> Bags &
+                        Cases</label>
+                    <label><input type="radio" name="cat" value="memory" onchange="setCategory('memory')"> Memory
+                        Cards</label>
+                    <label><input type="radio" name="cat" value="accessory" onchange="setCategory('accessory')">
+                        Accessories</label>
+                </div>
+            </div>
+        </aside>
+
+        <main class="product-arena">
+            <div class="arena-header">
+                <h2 class="animate-title">Exclusive <span class="gold-text">Gallery</span></h2>
+                <div id="resultsBar" style="color:#888;">Loading magical items...</div>
+            </div>
+
+            <div id="productGrid" class="magic-grid"></div>
+        </main>
+    </div>
+
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-bag-shopping"></i> Your Bag</h3>
+            <button class="close-drawer" onclick="toggleCartDrawer()">×</button>
+        </div>
+        <div id="cartItems" class="cart-body"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal</span>
+                <span id="cartTotalValue" class="gold-text">$0.00</span>
+            </div>
+            <button class="btn-vip-checkout">
+                <i class="fa-solid fa-lock"></i> Secure Checkout
+            </button>
+        </div>
+    </div>
+    <div id="cartOverlay" class="cart-overlay" onclick="toggleCartDrawer()"></div>
+
+    <div id="compareBar" class="compare-bar">
+        <div class="cmp-content">
+            <div class="cmp-icon-box"><i class="fa-solid fa-scale-balanced"></i></div>
+            <span style="color:#000; font-weight:bold;">Comparing <span id="cmpCount">0</span>/3 items</span>
+        </div>
+        <div class="cmp-actions">
+            <button class="btn-text" onclick="clearCompare()">Clear</button>
+            <button class="btn-gold-pill" onclick="openCompareModal()">Compare Now</button>
+        </div>
+    </div>
+
+    <div id="compareModal" class="fotolab-modal" aria-hidden="true">
+        <div class="modal-inner" style="max-width: 900px; width: 95%;">
+            <span class="modal-close" onclick="closeCompareModal()">×</span>
+            <h3 class="gold-text text-center" style="margin-bottom: 20px;">✨ Spec Comparison</h3>
+            <div id="compareTableWrapper" class="table-responsive">
+            </div>
+        </div>
+    </div>
+
+    <div id="signupModal" class="fotolab-modal">
+        <div class="modal-inner"><span class="modal-close" onclick="closeModal('signupModal')">×</span>
+            <h3 class="gold-text">Join Fotolab</h3>
+            <form class="form-stack"><input placeholder="Name"><input placeholder="Email"><button
+                    class="btn-primary full">Sign Up</button></form>
+        </div>
+    </div>
+    <div id="signinModal" class="fotolab-modal">
+        <div class="modal-inner"><span class="modal-close" onclick="closeModal('signinModal')">×</span>
+            <h3 class="gold-text">Welcome Back</h3>
+            <form class="form-stack"><input placeholder="Email"><input placeholder="Password"><button
+                    class="btn-primary full">Sign In</button></form>
+        </div>
+    </div>
+    <div id="productViewOverlay" class="product-overlay" onclick="closeProductView(event)">
+        <div class="product-modal-box">
+
+            <button class="pm-close" onclick="closeProductView()">×</button>
+
+            <div class="pm-image-area">
+                <img id="pmImage" src="" alt="Product Image">
+            </div>
+
+            <div class="pm-details">
+                <div id="pmBrand" class="pm-brand">BRAND</div>
+                <h2 id="pmTitle" class="pm-title">Product Name</h2>
+                <div id="pmPrice" class="pm-price">$0.00</div>
+                <p id="pmSpecs" class="pm-specs">Loading specs...</p>
+
+                <div class="pm-actions">
+                    <button id="pmAddToCartBtn" class="btn-gold" style="width: 100%; justify-content: center;">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        /* ============================================================
+           1. THE "MATRIX" DATABASE (78 PRODUCTS)
+           ============================================================ */
+        const products = [
+            // --- CANON ---
+            { id: 101, brand: "Canon", cat: "camera", name: "Canon EOS R5", price: 3899, img: "canon_camera_1.png", specs: "45MP | 8K RAW | IBIS" },
+            { id: 102, brand: "Canon", cat: "camera", name: "Canon EOS R6 II", price: 2499, img: "canon_camera_2.png", specs: "24MP | 40fps | 4K60" },
+            { id: 103, brand: "Canon", cat: "camera", name: "Canon R3", price: 5999, img: "canon_camera_3.png", specs: "Stacked Sensor | Eye Control" },
+            { id: 104, brand: "Canon", cat: "lens", name: "Canon RF 50mm f/1.2", price: 2299, img: "canon_lens_1.png", specs: "Prime | f/1.2" },
+            { id: 105, brand: "Canon", cat: "lens", name: "Canon RF 28-70mm f/2", price: 3099, img: "canon_lens_2.png", specs: "Constant f/2 Zoom" },
+            { id: 106, brand: "Canon", cat: "lens", name: "Canon RF 100-500mm", price: 2899, img: "canon_lens_3.png", specs: "Super Telephoto" },
+            { id: 107, brand: "Canon", cat: "lighting", name: "Speedlite EL-1", price: 1099, img: "canon_light_1.png", specs: "Li-ion Flash" },
+            { id: 108, brand: "Canon", cat: "lighting", name: "Speedlite 430EX", price: 299, img: "canon_light_2.png", specs: "Mid-range Flash" },
+            { id: 109, brand: "Canon", cat: "lighting", name: "Canon MR-14EX", price: 549, img: "canon_light_3.png", specs: "Macro Ring Lite" },
+            { id: 110, brand: "Canon", cat: "accessory", name: "Canon BG-R10 Grip", price: 349, img: "canon_acc_1.png", specs: "Battery Grip" },
+            { id: 111, brand: "Canon", cat: "accessory", name: "Canon LP-E6NH", price: 79, img: "canon_acc_2.png", specs: "Battery Pack" },
+            { id: 112, brand: "Canon", cat: "accessory", name: "Canon Mount Adapter", price: 129, img: "canon_acc_3.png", specs: "EF-EOS R" },
+
+            // --- SONY ---
+            { id: 201, brand: "Sony", cat: "camera", name: "Sony A1", price: 6498, img: "sony_camera_1.png", specs: "50MP | 30fps | 8K" },
+            { id: 202, brand: "Sony", cat: "camera", name: "Sony A7 IV", price: 2498, img: "sony_camera_2.png", specs: "33MP Hybrid" },
+            { id: 203, brand: "Sony", cat: "camera", name: "Sony FX3", price: 3898, img: "sony_camera_3.png", specs: "Cinema Line" },
+            { id: 204, brand: "Sony", cat: "lens", name: "Sony 24-70mm GM II", price: 2298, img: "sony_lens_1.png", specs: "G Master Zoom" },
+            { id: 205, brand: "Sony", cat: "lens", name: "Sony 70-200mm GM II", price: 2798, img: "sony_lens_2.png", specs: "Telephoto Zoom" },
+            { id: 206, brand: "Sony", cat: "lens", name: "Sony 50mm f/1.2 GM", price: 1998, img: "sony_lens_3.png", specs: "Prime Master" },
+            { id: 207, brand: "Sony", cat: "audio", name: "Sony ECM-B1M", price: 348, img: "sony_audio_1.png", specs: "Digital Shotgun" },
+            { id: 208, brand: "Sony", cat: "audio", name: "Sony C-800G", price: 9990, img: "sony_audio_2.png", specs: "Tube Condenser" },
+            { id: 209, brand: "Sony", cat: "audio", name: "Sony MDR-7506", price: 99, img: "sony_audio_3.png", specs: "Studio Headphones" },
+            { id: 210, brand: "Sony", cat: "memory", name: "Sony Tough 160GB", price: 399, img: "sony_mem_1.png", specs: "CFexpress Type A" },
+            { id: 211, brand: "Sony", cat: "memory", name: "Sony Tough 80GB", price: 199, img: "sony_mem_2.png", specs: "CFexpress Type A" },
+            { id: 212, brand: "Sony", cat: "accessory", name: "Sony VG-C4EM", price: 398, img: "sony_acc_1.png", specs: "Vertical Grip" },
+
+            // --- NIKON ---
+            { id: 301, brand: "Nikon", cat: "camera", name: "Nikon Z9", price: 5496, img: "nikon_camera_1.png", specs: "45MP Stacked" },
+            { id: 302, brand: "Nikon", cat: "camera", name: "Nikon Z8", price: 3996, img: "nikon_camera_2.png", specs: "Baby Z9" },
+            { id: 303, brand: "Nikon", cat: "camera", name: "Nikon Zf", price: 1996, img: "nikon_camera_3.png", specs: "Retro Style" },
+            { id: 304, brand: "Nikon", cat: "lens", name: "Nikkor Z 58mm Noct", price: 7996, img: "nikon_lens_1.png", specs: "f/0.95 Manual" },
+            { id: 305, brand: "Nikon", cat: "lens", name: "Nikkor Z 800mm", price: 6496, img: "nikon_lens_2.png", specs: "Super Prime" },
+            { id: 306, brand: "Nikon", cat: "lens", name: "Nikkor Z 24-70mm", price: 2296, img: "nikon_lens_3.png", specs: "f/2.8 S Line" },
+            { id: 307, brand: "Nikon", cat: "accessory", name: "Nikon MC-N10", price: 429, img: "nikon_acc_1.png", specs: "Remote Grip" },
+            { id: 308, brand: "Nikon", cat: "accessory", name: "Nikon EN-EL18d", price: 219, img: "nikon_acc_2.png", specs: "Battery" },
+            { id: 309, brand: "Nikon", cat: "accessory", name: "Nikon FTZ II", price: 249, img: "nikon_acc_3.png", specs: "Mount Adapter" },
+
+            // --- RODE ---
+            { id: 401, brand: "Rode", cat: "audio", name: "Rode Wireless Pro", price: 399, img: "rode_audio_1.png", specs: "32-bit Float" },
+            { id: 402, brand: "Rode", cat: "audio", name: "Rodecaster Pro II", price: 699, img: "rode_audio_2.png", specs: "Audio Console" },
+            { id: 403, brand: "Rode", cat: "audio", name: "Rode NT1 5th Gen", price: 249, img: "rode_audio_3.png", specs: "Hybrid USB/XLR" },
+            { id: 404, brand: "Rode", cat: "accessory", name: "Rode PSA1+", price: 129, img: "rode_acc_1.png", specs: "Boom Arm" },
+            { id: 405, brand: "Rode", cat: "accessory", name: "Rode NTH-100", price: 149, img: "rode_acc_2.png", specs: "Headphones" },
+            { id: 406, brand: "Rode", cat: "accessory", name: "Rode VideoMic NTG", price: 249, img: "rode_acc_3.png", specs: "On-Camera Mic" },
+            { id: 407, brand: "Rode", cat: "audio", name: "Rode PodMic", price: 99, img: "rode_audio_4.png", specs: "Dynamic Mic" },
+            { id: 408, brand: "Rode", cat: "audio", name: "Rode Wireless GO II", price: 299, img: "rode_audio_5.png", specs: "Compact Wireless" },
+            { id: 409, brand: "Rode", cat: "audio", name: "Rode NTG3", price: 699, img: "rode_audio_6.png", specs: "Shotgun" },
+
+            // --- MANFROTTO ---
+            { id: 501, brand: "Manfrotto", cat: "tripod", name: "Befree GT Carbon", price: 389, img: "man_tripod_1.png", specs: "Travel Tripod" },
+            { id: 502, brand: "Manfrotto", cat: "tripod", name: "055 Alum Kit", price: 349, img: "man_tripod_2.png", specs: "Studio Pro" },
+            { id: 503, brand: "Manfrotto", cat: "tripod", name: "Nitrotech 608", price: 649, img: "man_tripod_3.png", specs: "Fluid Head" },
+            { id: 504, brand: "Manfrotto", cat: "bag", name: "Pro Light Flex", price: 259, img: "man_bag_1.png", specs: "Cinematic Bag" },
+            { id: 505, brand: "Manfrotto", cat: "bag", name: "Reloader Air-55", price: 419, img: "man_bag_2.png", specs: "Roller Case" },
+            { id: 506, brand: "Manfrotto", cat: "bag", name: "Advanced Fast", price: 129, img: "man_bag_3.png", specs: "Backpack" },
+            { id: 507, brand: "Manfrotto", cat: "lighting", name: "Lykos 2.0 LED", price: 299, img: "man_light_1.png", specs: "Portable LED" },
+            { id: 508, brand: "Manfrotto", cat: "lighting", name: "Chroma Key FX", price: 499, img: "man_light_2.png", specs: "Green Screen" },
+            { id: 509, brand: "Manfrotto", cat: "tripod", name: "Pixi Evo", price: 49, img: "man_tripod_4.png", specs: "Mini Tripod" },
+
+            // --- GODOX ---
+            { id: 601, brand: "Godox", cat: "lighting", name: "Godox AD600Pro", price: 899, img: "godox_light_1.png", specs: "600Ws Strobe" },
+            { id: 602, brand: "Godox", cat: "lighting", name: "Godox VL300", price: 749, img: "godox_light_2.png", specs: "LED Video Light" },
+            { id: 603, brand: "Godox", cat: "lighting", name: "Godox V1", price: 259, img: "godox_light_3.png", specs: "Round Head Flash" },
+            { id: 604, brand: "Godox", cat: "audio", name: "Godox MoveLink", price: 199, img: "godox_audio_1.png", specs: "Wireless Mic" },
+            { id: 605, brand: "Godox", cat: "audio", name: "Godox VDS-M2", price: 149, img: "godox_audio_2.png", specs: "Shotgun Mic" },
+            { id: 606, brand: "Godox", cat: "accessory", name: "Godox XPro Trigger", price: 69, img: "godox_acc_1.png", specs: "Flash Trigger" },
+            { id: 607, brand: "Godox", cat: "lighting", name: "Godox TL60 Tube", price: 239, img: "godox_light_4.png", specs: "RGB Tube" },
+            { id: 608, brand: "Godox", cat: "lighting", name: "Godox QR-P90", price: 109, img: "godox_light_5.png", specs: "Softbox" },
+            { id: 609, brand: "Godox", cat: "lighting", name: "Godox LD150R", price: 899, img: "godox_light_6.png", specs: "Panel Light" },
+
+            // --- SANDISK ---
+            { id: 701, brand: "SanDisk", cat: "memory", name: "Extreme Pro 128GB", price: 45, img: "sandisk_mem_1.png", specs: "SD UHS-I" },
+            { id: 702, brand: "SanDisk", cat: "memory", name: "Extreme Pro CFx", price: 149, img: "sandisk_mem_2.png", specs: "CFexpress B" },
+            { id: 703, brand: "SanDisk", cat: "memory", name: "Portable SSD 2TB", price: 169, img: "sandisk_mem_3.png", specs: "USB-C SSD" },
+            { id: 704, brand: "SanDisk", cat: "memory", name: "Extreme Pro Micro", price: 35, img: "sandisk_mem_4.png", specs: "MicroSD" },
+            { id: 705, brand: "SanDisk", cat: "memory", name: "Pro-Blade Transport", price: 69, img: "sandisk_mem_5.png", specs: "SSD Mag" },
+            { id: 706, brand: "SanDisk", cat: "memory", name: "Pro-Reader Multi", price: 79, img: "sandisk_mem_6.png", specs: "Card Reader" },
+            { id: 707, brand: "SanDisk", cat: "memory", name: "Ultra Dual Drive", price: 25, img: "sandisk_mem_7.png", specs: "USB-C Drive" },
+            { id: 708, brand: "SanDisk", cat: "memory", name: "Extreme Go", price: 19, img: "sandisk_mem_8.png", specs: "USB 3.2" },
+            { id: 709, brand: "SanDisk", cat: "memory", name: "Max Endurance", price: 49, img: "sandisk_mem_9.png", specs: "Surveillance Card" },
+
+            // --- FUJIFILM ---
+            { id: 801, brand: "Fujifilm", cat: "camera", name: "Fuji GFX 100 II", price: 7499, img: "fuji_camera_1.png", specs: "Medium Format" },
+            { id: 802, brand: "Fujifilm", cat: "camera", name: "Fuji X-T5", price: 1699, img: "fuji_camera_2.png", specs: "APS-C 40MP" },
+            { id: 803, brand: "Fujifilm", cat: "camera", name: "Fuji X100VI", price: 1599, img: "fuji_camera_3.png", specs: "Compact Fixed" },
+            { id: 804, brand: "Fujifilm", cat: "lens", name: "Fuji GF 110mm", price: 2799, img: "fuji_lens_1.png", specs: "Portrait Master" },
+            { id: 805, brand: "Fujifilm", cat: "lens", name: "Fuji XF 33mm", price: 799, img: "fuji_lens_2.png", specs: "f/1.4 Prime" },
+            { id: 806, brand: "Fujifilm", cat: "lens", name: "Fuji XF 16-55mm", price: 1199, img: "fuji_lens_3.png", specs: "Red Badge Zoom" },
+            { id: 807, brand: "Fujifilm", cat: "accessory", name: "Fuji VG-XT5", price: 329, img: "fuji_acc_1.png", specs: "Vertical Grip" },
+            { id: 808, brand: "Fujifilm", cat: "accessory", name: "Fuji NP-W235", price: 69, img: "fuji_acc_2.png", specs: "Battery" },
+            { id: 809, brand: "Fujifilm", cat: "lighting", name: "Fuji EF-60", price: 399, img: "fuji_light_1.png", specs: "Shoe Mount Flash" }
+        ];
+
+        /* ============================================================
+           2. APP LOGIC
+           ============================================================ */
+        let cart = [];
+        let compareList = [];
+        let filters = { brand: 'all', cat: 'all', search: '' };
+        let paymentMethod = 'cod'; // Default
+
+        /* --- UPDATED WINDOW ONLOAD (SMART FILTERING) --- */
+        window.onload = function () {
+            const params = new URLSearchParams(window.location.search);
+
+            // URL se data uthao
+            const brandFromUrl = params.get('brand');
+            const catFromUrl = params.get('cat');
+            const searchFromUrl = params.get('search');
+
+            // Logic to Set Filters
+            if (brandFromUrl && catFromUrl) {
+                // Agar Brand aur Category dono hain (e.g. Canon Cameras)
+                filters.brand = brandFromUrl;
+                filters.cat = catFromUrl;
+                // Search box mein dikhao user ne kya manga tha
+                document.getElementById('searchInput').value = `${brandFromUrl} ${catFromUrl === 'camera' ? 'Cameras' : catFromUrl}`;
+
+            } else if (brandFromUrl) {
+                filters.brand = brandFromUrl;
+                filters.cat = 'all';
+            } else if (catFromUrl) {
+                filters.cat = catFromUrl;
+                filters.brand = 'all';
+            } else if (searchFromUrl) {
+                filters.search = searchFromUrl;
+                document.getElementById('searchInput').value = searchFromUrl;
+            } else {
+                filters.brand = 'all';
+                filters.cat = 'all';
+            }
+
+            // UI Update (Radio Buttons)
+            if (filters.cat !== 'all') {
+                const radioBtn = document.querySelector(`input[name="cat"][value="${filters.cat}"]`);
+                if (radioBtn) radioBtn.checked = true;
+                const allRadio = document.querySelector('input[name="cat"][value="all"]');
+                if (allRadio) allRadio.checked = false;
+            }
+
+            // Active Brand Button Update
+            document.querySelectorAll('.b-tag').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.trim() === filters.brand || (filters.brand === 'all' && btn.textContent.trim() === 'All')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderProducts();
+            updateCartIcon();
+        };
+
+        /* --- RENDERER (MAGIC ANIMATION) --- */
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = "";
+
+            // Filter Logic
+            const filtered = products.filter(p => {
+                return (filters.brand === 'all' || p.brand === filters.brand) &&
+                    (filters.cat === 'all' || p.cat === filters.cat) &&
+                    (p.name.toLowerCase().includes(filters.search.toLowerCase()));
+            });
+
+            document.getElementById('resultsBar').innerText = `${filtered.length} Premium Items Found`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = "<div style='grid-column:1/-1; text-align:center; padding:50px; color:#666;'>No items found in this collection.</div>";
+                return;
+            }
+
+            filtered.forEach((p, index) => {
+                const inCmp = compareList.find(c => c.id === p.id) ? 'checked' : '';
+                const delay = index * 0.05;
+
+                const card = document.createElement('div');
+                card.className = "magic-card";
+                card.style.animationDelay = `${delay}s`;
+
+                card.innerHTML = `
+            <div class="clickable-area" onclick="openProductView(${p.id})">
+                <div class="mc-img">
+                    <img src="FotoLabImages/${p.img}" onerror="this.src='https://via.placeholder.com/300?text=${p.brand}'">
+                </div>
+                <div class="mc-brand">${p.brand}</div>
+                <h3 class="mc-title">${p.name}</h3>
+                <div class="mc-price"><span>$${p.price.toLocaleString()}</span></div>
+            </div>
+            
+            <div class="mc-actions">
+                <button class="btn-gold" onclick="event.stopPropagation(); addToCart(${p.id})">
+                    <i class="fa-solid fa-cart-shopping"></i> Add
+                </button>
+
+                <button class="btn-outline" onclick="event.stopPropagation(); downloadSpecs(${p.id})">
+                    <i class="fa-solid fa-file-arrow-down"></i> Specs
+                </button>
+
+                <label class="cmp-label" onclick="event.stopPropagation()">
+                    <input type="checkbox" ${inCmp} onchange="toggleCompare(${p.id}, this)">
+                    <span>Compare</span>
+                </label>
+            </div>
+        `;
+                grid.appendChild(card);
+            });
+        }
+
+        /* ============================================================
+           NEW POPUP LOGIC (EXPAND CARD) 
+           ============================================================ */
+        function openProductView(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+
+            // Data Fill 
+            document.getElementById('pmImage').src = `FotoLabImages/${p.img}`;
+            document.getElementById('pmBrand').innerText = p.brand;
+            document.getElementById('pmTitle').innerText = p.name;
+            document.getElementById('pmPrice').innerText = `$${p.price.toLocaleString()}`;
+            document.getElementById('pmSpecs').innerText = p.specs;
+
+            // "Add to Cart" button inside Popup
+            const modalBtn = document.getElementById('pmAddToCartBtn');
+            modalBtn.onclick = function () {
+                addToCart(p.id);
+                closeProductView(); // Close after adding
+            };
+
+            // Show Modal
+            const overlay = document.getElementById('productViewOverlay');
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                overlay.classList.add('active');
+            }, 10);
+        }
+
+        function closeProductView(e) {
+            if (e && e.target !== e.currentTarget && e.target.id !== 'productViewOverlay') return;
+
+            const overlay = document.getElementById('productViewOverlay');
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        /* --- FILTERING --- */
+        function setBrand(brand, btn) {
+            filters.brand = brand;
+            document.querySelectorAll('.b-tag').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts();
+        }
+        function setCategory(cat) {
+            filters.cat = cat;
+            renderProducts();
+        }
+        function filterByDropdown(cat) {
+            setCategory(cat);
+            const radio = document.querySelector(`input[name="cat"][value="${cat}"]`);
+            if (radio) radio.checked = true;
+        }
+        function searchProducts() {
+            filters.search = document.getElementById('searchInput').value;
+            renderProducts();
+        }
+
+        /* --- CART LOGIC --- */
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(i => i.id === id);
+
+            if (existing) {
+                if (existing.qty >= 4) {
+                    showToast("Limit Reached: Max 4 units per item.", "error");
+                    return;
+                }
+                existing.qty++;
+                showToast(`Quantity updated: ${product.name}`);
+            } else {
+                cart.push({ ...product, qty: 1 });
+                showToast(`${product.name} added to bag`);
+            }
+
+            // Checkout button update
+            const footer = document.querySelector('.cart-footer');
+            if (footer) {
+                footer.innerHTML = `
+        <div class="cart-total">
+            <span>Subtotal</span>
+            <span id="cartTotalValue" class="gold-text">$0.00</span>
+        </div>
+        <button class="btn-vip-checkout" onclick="startCheckout()">
+            <i class="fa-solid fa-lock"></i> Secure Checkout
+        </button>`;
+            }
+
+            updateCart();
+            toggleCartDrawer(true);
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cartItems');
+            const badge = document.getElementById('navCartBadge');
+            const totalEl = document.getElementById('cartTotalValue');
+
+            container.innerHTML = "";
+            let grandTotal = 0;
+            let count = 0;
+
+            cart.forEach((item, index) => {
+                grandTotal += item.price * item.qty;
+                count += item.qty;
+
+                container.innerHTML += `
+    <div class="cart-widget">
+        <img src="FotoLabImages/${item.img}" onerror="this.src='https://via.placeholder.com/60'">
+        <div class="cw-info">
+            <h5 class="cw-title">${item.name}</h5>
+            <div class="cw-price">$${item.price} x ${item.qty}</div>
+            <div class="cw-controls">
+                <span class="cw-btn" onclick="modQty(${index}, -1)">-</span>
+                <span class="cw-qty">${item.qty}</span>
+                <span class="cw-btn" onclick="modQty(${index}, 1)">+</span>
+            </div>
+        </div>
+        <div style="font-weight:bold; color:#fff;">$${(item.price * item.qty).toLocaleString()}</div>
+    </div>
+`;
+            });
+
+            badge.innerText = count;
+            if (totalEl) totalEl.innerText = "$" + grandTotal.toLocaleString();
+
+            if (cart.length === 0) container.innerHTML = "<p style='text-align:center; color:#666; margin-top:20px;'>Your luxury bag is empty.</p>";
+            return grandTotal;
+        }
+
+        function modQty(index, amount) {
+            const item = cart[index];
+            if (amount === 1 && item.qty >= 4) {
+                showToast("Maximum limit is 4 units.", "error");
+                return;
+            }
+            item.qty += amount;
+            if (item.qty <= 0) cart.splice(index, 1);
+            updateCart();
+        }
+
+        /* --- CHECKOUT FLOW (MAGIC) --- */
+        function startCheckout() {
+            if (cart.length === 0) { alert("Cart is empty!"); return; }
+
+            const container = document.getElementById('cartItems');
+            const footer = document.querySelector('.cart-footer');
+            const total = updateCart(); // Get total
+
+            // Inject Checkout Form
+            container.innerHTML = `
+<div class="checkout-container">
+    <div class="checkout-header">Select Payment Method</div>
+    
+    <div class="payment-options">
+        <div class="pay-btn active" id="btnCod" onclick="selectPayment('cod')">
+            <i class="fa-solid fa-money-bill-wave"></i> COD
+        </div>
+        <div class="pay-btn" id="btnCard" onclick="selectPayment('card')">
+            <i class="fa-regular fa-credit-card"></i> Card
+        </div>
+    </div>
+
+    <div id="cardDetails" class="card-details">
+        <input type="text" class="gold-input" placeholder="Card Number (XXXX-XXXX-XXXX-XXXX)">
+        <div style="display:flex; gap:10px;">
+            <input type="text" class="gold-input" placeholder="MM/YY">
+            <input type="text" class="gold-input" placeholder="CVV">
+        </div>
+    </div>
+
+    <div class="checkout-header" style="margin-top:20px;">Order Summary</div>
+    <div class="summary-row"><span>Items</span><span>${cart.length}</span></div>
+    <div class="summary-row"><span>Shipping</span><span>Free</span></div>
+    <div class="final-total">
+        <span>Total</span>
+        <span>$${total.toLocaleString()}</span>
+    </div>
+</div>
+`;
+
+            // Change Footer Button
+            footer.innerHTML = `
+<button class="btn-vip-checkout" onclick="confirmOrder()">
+    Confirm Order
+</button>
+<div style="text-align:center; margin-top:10px; cursor:pointer; color:#888; font-size:12px;" onclick="updateCart(); resetFooter()">
+    &larr; Back to Cart
+</div>
+`;
+
+            selectPayment('cod'); // Default init
+        }
+
+        function selectPayment(method) {
+            paymentMethod = method;
+            document.getElementById('btnCod').classList.remove('active');
+            document.getElementById('btnCard').classList.remove('active');
+            document.getElementById('cardDetails').classList.remove('visible');
+
+            if (method === 'cod') {
+                document.getElementById('btnCod').classList.add('active');
+            } else {
+                document.getElementById('btnCard').classList.add('active');
+                document.getElementById('cardDetails').classList.add('visible');
+            }
+        }
+
+        function confirmOrder() {
+            // Basic Validation for Card
+            if (paymentMethod === 'card') {
+                const inputs = document.querySelectorAll('.gold-input');
+                for (let input of inputs) {
+                    if (input.value.trim() === "") { alert("Please fill card details."); return; }
+                }
+            }
+
+            // GENERATE MAGIC DATA
+            const orderID = "#ORD-" + Math.floor(100000 + Math.random() * 900000);
+            const date = new Date();
+            date.setDate(date.getDate() + 30); // 1 Month later
+            const deliveryDate = date.toDateString();
+
+            // SHOW SUCCESS SCREEN
+            const container = document.getElementById('cartItems');
+            const footer = document.querySelector('.cart-footer');
+
+            container.innerHTML = `
+<div class="success-screen">
+    <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+    <h3 class="gold-text">Order Confirmed!</h3>
+    <p>Thank you for choosing Fotolab Luxury.</p>
+    
+    <div class="order-id">${orderID}</div>
+    
+    <div class="delivery-date">
+        Estimated Delivery:<br>
+        <span>${deliveryDate}</span>
+    </div>
+</div>
+`;
+
+            footer.innerHTML = "";
+            cart = [];
+            document.getElementById('navCartBadge').innerText = 0;
+        }
+
+        function resetFooter() {
+            const footer = document.querySelector('.cart-footer');
+            footer.innerHTML = `
+<div class="cart-total">
+    <span>Subtotal</span>
+    <span id="cartTotalValue" class="gold-text">$0.00</span>
+</div>
+<button class="btn-vip-checkout" onclick="startCheckout()">
+    <i class="fa-solid fa-lock"></i> Secure Checkout
+</button>
+`;
+        }
+
+        function toggleCartDrawer(forceOpen = false) {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            if (forceOpen) {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+            } else {
+                drawer.classList.toggle('open');
+                overlay.classList.toggle('open');
+            }
+        }
+        function updateCartIcon() { document.getElementById('navCartBadge').innerText = 0; }
+
+        /* --- COMPARE & DOWNLOAD --- */
+        function toggleCompare(id, cb) {
+            if (cb.checked) {
+                if (compareList.length >= 3) {
+                    alert("Compare limit (3) reached.");
+                    cb.checked = false; return;
+                }
+                compareList.push(products.find(p => p.id === id));
+            } else {
+                compareList = compareList.filter(p => p.id !== id);
+            }
+            updateCompareBar();
+        }
+
+        function updateCompareBar() {
+            const bar = document.getElementById('compareBar');
+            document.getElementById('cmpCount').innerText = compareList.length;
+            if (compareList.length > 0) bar.classList.add('active');
+            else bar.classList.remove('active');
+        }
+
+        function clearCompare() {
+            compareList = [];
+            updateCompareBar();
+            renderProducts();
+        }
+
+        /* --- COMPARE LOGIC --- */
+        function openCompareModal() {
+            // 1. Check if items selected
+            if (compareList.length < 2) {
+                alert("Select at least 2 items to compare.");
+                return;
+            }
+
+            // 2. Generate Table
+            const wrapper = document.getElementById('compareTableWrapper');
+            let html = `<table class="cmp-table" style="width:100%; color:#fff; text-align:center; border-collapse: collapse;">
+        <tr style="border-bottom:1px solid #333;">
+            <th style="padding:15px; color:#d4af37;">Feature</th>
+            ${compareList.map(p => `<th style="padding:15px;">${p.name}</th>`).join('')}
+        </tr>
+        <tr>
+            <td style="padding:15px;">Image</td>
+            ${compareList.map(p => `<td style="padding:15px;"><img src="FotoLabImages/${p.img}" width="80" style="border-radius:8px;"></td>`).join('')}
+        </tr>
+        <tr>
+            <td style="padding:15px;">Price</td>
+            ${compareList.map(p => `<td style="padding:15px; color:#d4af37; font-weight:bold;">$${p.price.toLocaleString()}</td>`).join('')}
+        </tr>
+        <tr>
+            <td style="padding:15px;">Specs</td>
+            ${compareList.map(p => `<td style="padding:15px; color:#aaa; font-size:13px;">${p.specs}</td>`).join('')}
+        </tr>
+    </table>`;
+
+            wrapper.innerHTML = html;
+
+            // 3. Show Modal (Glass Effect Style)
+            const modal = document.getElementById('compareModal');
+
+            modal.style.display = 'flex';
+
+            setTimeout(() => {
+                modal.setAttribute('aria-hidden', 'false');
+            }, 10);
+        }
+
+        function closeCompareModal() {
+            const modal = document.getElementById('compareModal');
+            modal.setAttribute('aria-hidden', 'true'); // Fade Out
+            setTimeout(() => {
+                modal.style.display = 'none'; // Hide completely
+            }, 300);
+        }
+
+        /* --- UPDATED: DOWNLOAD AS WORD DOC (.DOC) --- */
+function downloadSpecs(id) {
+    const p = products.find(i => i.id === id);
+    const htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Fotolab Specs</title></head>
+        <body style="font-family: Arial, sans-serif;">
+            
+            <div style="background-color:#0A0F2C; color:#E5C07B; padding:20px; text-align:center;">
+                <h1>✨ FOTOLAB OFFICIAL SPECS ✨</h1>
+            </div>
+            
+            <br>
+            
+            <h2 style="color:#333;">Product: ${p.name}</h2>
+            <hr>
+            
+            <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse:collapse; border-color:#ddd;">
+                <tr style="background-color:#f9f9f9;">
+                    <td style="font-weight:bold; width:30%;">Brand</td>
+                    <td>${p.brand}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Category</td>
+                    <td>${p.cat.toUpperCase()}</td>
+                </tr>
+                <tr style="background-color:#f9f9f9;">
+                    <td style="font-weight:bold;">Price</td>
+                    <td style="color:#000; font-weight:bold;">$${p.price.toLocaleString()}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Technical Specs</td>
+                    <td>${p.specs}</td>
+                </tr>
+            </table>
+
+            <br><br>
+            <p style="color:#777; text-align:center; font-size:12px;">
+                Generated by Fotolab System | Since 1991<br>
+                www.fotolab.kr
+            </p>
+        </body>
+        </html>
+    `;
+
+    // 2. MIME Type 'application/msword' set kiya
+    const blob = new Blob([htmlContent], { type: "application/msword" });
+
+    // 3. Link create karke .doc extension diya
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${p.name}-SpecSheet.doc`; // .txt ki jagah .doc
+    
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+        // Modal Helpers
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function openChat() { alert("Chatbot activating..."); }
+
+    </script>
+
+    <!-- ===================== FOOTER ===================== -->
+
+    <footer class="fotolab-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-col">
+                    <img src="FotoLabImages/FotolabLogo.png" alt="Fotolab" class="footer-logo">
+                    <p class="footer-desc">
+                        Empowering creators with the finest photography gear since 1991. Where light meets luxury.
+                    </p>
+
+                    <h5 class="footer-heading">Opening Hours</h5>
+                    <ul class="footer-hours">
+                        <li><span>Mon - Sat</span> <span>09 Am - 09 Pm</span></li>
+                        <li><span>Sunday</span> <span style="color: #ff4757;">09 Am - 05 Pm</span></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-col">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="FotoLabHome.html">Home</a></li>
+                        <li><a href="FotoLabAboutPage.html">About Us</a></li>
+                        <li><a href="FotoLabContactPage.html">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" onclick="openSigninModal()">Member Login</a></li>
+                        <li><a href="javascript:void(0)" onclick="openSignupModal()">Register</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-col">
+                    <h5 class="footer-heading">Our Collections</h5>
+                    <ul class="footer-links">
+                        <li><a href="FotoLabProductsPage.html?cat=camera">Digital Cameras</a></li>
+                        <li><a href="FotoLabProductsPage.html?cat=lens">Premium Lenses</a></li>
+                        <li><a href="FotoLabProductsPage.html?cat=audio">Pro Audio Gear</a></li>
+                        <li><a href="FotoLabProductsPage.html?cat=lighting">Studio Lighting</a></li>
+                        <li><a href="FotoLabProductsPage.html?cat=tripod">Stabilizers & Tripods</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-col">
+                    <h5 class="footer-heading">Contact Us</h5>
+                    <ul class="contact-list">
+                        <li><i class="bi bi-telephone-fill"></i> +82 10 1234 5678</li>
+                        <li><i class="bi bi-envelope-fill"></i> support@fotolab.kr</li>
+                        <li><i class="bi bi-geo-alt-fill"></i> Gangnam-gu, Seoul, Korea</li>
+                    </ul>
+
+                    <h5 class="footer-heading" style="margin-top: 20px;">Follow @Fotolab</h5>
+                    <div class="footer-socials">
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Fotolab — All Rights Reserved | Privacy Statement</p>
+        </div>
+
+        <button id="scrollTopBtn" onclick="scrollToTop()">
+            <i class="bi bi-chevron-up"></i>
+        </button>
+    </footer>
+
+    <script>
+
+        // Initialize testimonials carousel (optional timing tweak)
+        const testi = document.getElementById('testi');
+        if (testi && window.bootstrap) {
+            new bootstrap.Carousel(testi, { interval: 3800, ride: true });
+        }
+
+        // Footer links to existing modals/chat (if present in your code)
+        const fsu = document.getElementById('footerSignup');
+        if (fsu && typeof openSignupModal === 'function') {
+            fsu.addEventListener('click', e => { e.preventDefault(); openSignupModal(); });
+        }
+        const fsup = document.getElementById('footerSupport');
+        if (fsup && typeof openChatbot === 'function') {
+            fsup.addEventListener('click', e => { e.preventDefault(); openChatbot(); });
+        }
+
+        const scrollBtn = document.getElementById("scrollTopBtn");
+        const footer = document.querySelector(".fotolab-footer");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    scrollBtn.classList.add("show");
+                } else {
+                    scrollBtn.classList.remove("show");
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1
+        });
+
+        if (footer) {
+            observer.observe(footer);
+        }
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+    </script>
+
+    <script>
+        function showSuggestions() {
+            document.getElementById("suggestionsBox").style.display = "block";
+        }
+
+        function hideSuggestions() {
+            setTimeout(() => {
+                document.getElementById("suggestionsBox").style.display = "none";
+            }, 150);
+        }
+
+        // HOVER TO FILL INPUT
+        document.querySelectorAll("#suggestionsBox div").forEach(item => {
+            item.addEventListener("mouseenter", () => {
+                document.getElementById("searchInput").value = item.textContent;
+            });
+        });
+    </script>
+    <script>
+
+        const DB = { user: null }; // simple in-memory "database"
+
+        function showModal(id) { document.getElementById(id).setAttribute('aria-hidden', 'false'); }
+        function hideModal(id) { document.getElementById(id).setAttribute('aria-hidden', 'true'); }
+
+        // OPEN MODALS
+        document.getElementById('navSignupBtn').addEventListener('click', () => showModal('signupModal'));
+        document.getElementById('navSigninBtn').addEventListener('click', () => showModal('signinModal'));
+
+        // CLOSE MODALS WITH CROSS BUTTON
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modal = btn.closest('.fotolab-modal');
+                if (modal) modal.setAttribute('aria-hidden', 'true');
+            });
+        });
+
+        // LINK SWITCH
+        document.getElementById('linkToSignin').addEventListener('click', e => {
+            e.preventDefault();
+            hideModal('signupModal');
+            showModal('signinModal');
+            if (DB.user) document.getElementById('signinEmail').value = DB.user.email;
+        });
+        document.getElementById('linkToSignup').addEventListener('click', e => {
+            e.preventDefault();
+            hideModal('signinModal');
+            showModal('signupModal');
+        });
+
+        // REGISTER FORM
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Inputs
+            const nameIn = document.getElementById('regName');
+            const emailIn = document.getElementById('regEmail');
+            const phoneIn = document.getElementById('regPhone');
+            const addIn = document.getElementById('regAddress');
+            const postIn = document.getElementById('regPostal');
+            const passIn = document.getElementById('regPass');
+            const btn = document.getElementById('btnRegister');
+
+            // Error Divs
+            const errName = document.getElementById('errName');
+            const errEmail = document.getElementById('errEmail');
+            const errPhone = document.getElementById('errPhone');
+            const errPass = document.getElementById('errPass');
+
+            // --- HELPER: SHOW ERROR ---
+            function showError(input, div, msg) {
+                input.classList.remove('input-success');
+                input.style.border = "1px solid #ff4757";
+                div.innerText = msg;
+                div.classList.add('error-visible');
+            }
+
+            // --- HELPER: SHOW SUCCESS ---
+            function showSuccess(input, div) {
+                input.classList.add('input-success');
+                input.style.border = "1px solid #2ed573";
+                div.innerText = "";
+                div.classList.remove('error-visible');
+            }
+
+            // --- 1. REAL-TIME CHECKING ---
+
+            // Name Check
+            nameIn.addEventListener('input', function () {
+                const val = this.value.trim();
+                if (/\d/.test(val)) {
+                    showError(this, errName, "Numbers not allowed in name!");
+                    return;
+                }
+                if (val.length < 3) {
+                    showError(this, errName, "Name is too short (Min 3 chars)");
+                    emailIn.disabled = true;
+                } else {
+                    showSuccess(this, errName);
+                    emailIn.disabled = false;
+                }
+            });
+
+            // Email Check
+            emailIn.addEventListener('input', function () {
+                const val = this.value.trim();
+                if (!val.includes('@')) {
+                    showError(this, errEmail, "Missing '@' symbol");
+                    phoneIn.disabled = true;
+                } else if (!val.includes('.')) {
+                    showError(this, errEmail, "Missing domain (e.g. .com)");
+                    phoneIn.disabled = true;
+                } else {
+                    showSuccess(this, errEmail);
+                    phoneIn.disabled = false;
+                }
+            });
+
+            // Phone Check
+            phoneIn.addEventListener('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length < 11) {
+                    showError(this, errPhone, "Must be exactly 11 digits");
+                    if (addIn) addIn.disabled = true;
+                    if (postIn) postIn.disabled = true;
+                } else {
+                    showSuccess(this, errPhone);
+                    if (addIn) addIn.disabled = false;
+                    if (postIn) postIn.disabled = false;
+                }
+            });
+
+            // Address & Post Check
+            function checkAddr() {
+                if (addIn.value && postIn.value) passIn.disabled = false;
+                else passIn.disabled = true;
+            }
+            addIn.addEventListener('input', checkAddr);
+            postIn.addEventListener('input', checkAddr);
+
+            // Password Check
+            passIn.addEventListener('input', function () {
+                const val = this.value;
+                const isStrong = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$/.test(val);
+                if (!isStrong) {
+                    showError(this, errPass, "Weak! Need: 1 Upper, 1 Special (@#$), 1 Number, 8 Chars");
+                } else {
+                    showSuccess(this, errPass);
+                }
+            });
+
+            // --- 2. FINAL SUBMIT (RESTORED LOGIC) ---
+            document.getElementById('signupForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Check All Again
+                const isName = nameIn.value.length >= 3;
+                const isEmail = emailIn.value.includes('@') && emailIn.value.includes('.');
+                const isPhone = phoneIn.value.length === 11;
+                const isPass = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$/.test(passIn.value);
+
+                if (isName && isEmail && isPhone && isPass) {
+
+                    // 1. DATA SAVE KARO (DATABASE SIMULATION)
+                    // Ye line zaroori hai taake Login form isay pehchan sake
+                    DB.user = {
+                        name: nameIn.value,
+                        email: emailIn.value.toLowerCase(),
+                        password: passIn.value
+                    };
+
+                    // 2. SUCCESS MESSAGE
+                    if (typeof showToast === 'function') {
+                        showToast("Account Created Successfully! Redirecting to Login...", "success");
+                    } else {
+                        alert("Account Created! Redirecting...");
+                    }
+
+                    // 3. AUTO SWITCH TO LOGIN (AFTER 1.5 SEC)
+                    setTimeout(() => {
+                        // Register Band
+                        if (typeof hideModal === 'function') hideModal('signupModal');
+
+                        // Login Kholo
+                        if (typeof showModal === 'function') showModal('signinModal');
+
+                        // 4. AUTO FILL EMAIL
+                        const loginEmailInput = document.getElementById('signinEmail');
+                        if (loginEmailInput) {
+                            loginEmailInput.value = DB.user.email; // Email yahan fill hogi
+                        }
+                    }, 1500);
+
+                } else {
+                    if (typeof showToast === 'function') {
+                        showToast("Please fix the errors in red!", "error");
+                    } else {
+                        alert("Please fix the errors!");
+                    }
+                }
+            });
+        });
+
+
+        // LOGIN FORM
+        document.getElementById('signinForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const email = document.getElementById('signinEmail').value.trim().toLowerCase();
+            const pass = document.getElementById('signinPassword').value.trim();
+            const msgEl = document.getElementById('signinMsg');
+            if (!DB.user) {
+                msgEl.textContent = '⚠️ No account found. Please register yourself first.';
+                return;
+            }
+            if (email === DB.user.email && pass === DB.user.password) {
+                msgEl.textContent = '';
+                document.getElementById('userNameShow').textContent = DB.user.name;
+                document.getElementById('userEmailShow').textContent = DB.user.email;
+                document.getElementById('userProfile').hidden = false;
+                setTimeout(() => hideModal('signinModal'), 650);
+            } else {
+                msgEl.textContent = '❌ Incorrect email or password.';
+            }
+        });
+
+        // ESC key closes modal
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                hideModal('signupModal');
+                hideModal('signinModal');
+            }
+        });
+    </script>
+
+    <script>
+
+        function qs(id) { return document.getElementById(id); }
+        // ###############################
+        // CHATBOT behavior
+        // ###############################
+        const chatBox = qs('chatbotBox');
+        const chatClose = qs('chatCloseBtn');
+        const chatSend = qs('chatSendBtn');
+        const chatInput = qs('chatInput');
+        const chatBody = qs('chatBody');
+        const assistantSub = qs('assistantSub');
+
+        function appendUserBubble(text) {
+            const d = document.createElement('div');
+            d.className = 'user-bubble';
+            d.textContent = text;
+            chatBody.appendChild(d);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        function appendBotBubble(text) {
+            const d = document.createElement('div');
+            d.className = 'bot-bubble';
+            d.textContent = text;
+            chatBody.appendChild(d);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        window.openChatbot = function () { // exposed if needed
+            if (!chatBox) return;
+            chatBox.style.display = 'flex';
+            chatBox.setAttribute('aria-hidden', 'false');
+            // friendly animation
+            chatBox.animate([{ transform: 'translateY(12px)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 260, easing: 'cubic-bezier(.2,.9,.2,1)' });
+        };
+
+        window.closeChatbot = function () {
+            if (!chatBox) return;
+            chatBox.style.display = 'none';
+            chatBox.setAttribute('aria-hidden', 'true');
+        };
+
+        // open helpers used by navbar click handlers
+        window.openSignupModal = function () { showModal('signupModal'); };
+        window.openSigninModal = function () { showModal('signinModal'); };
+        window.openChatbot = window.openChatbot; // noop if already defined
+
+        // wire navbar support button to open chatbot
+        const supportButton = qs('supportBtn');
+        if (supportButton) supportButton.addEventListener('click', function (ev) {
+            ev.preventDefault();
+            // only open, don't close by outside clicks
+            if (chatBox.style.display === 'flex') {
+                // already open — do nothing or bring to front
+                chatBox.style.display = 'flex';
+            } else {
+                chatBox.style.display = 'flex';
+                chatBox.setAttribute('aria-hidden', 'false');
+            }
+        });
+
+        // chat close (only via cross)
+        if (chatClose) chatClose.addEventListener('click', function () { chatBox.style.display = 'none'; chatBox.setAttribute('aria-hidden', 'true'); });
+
+        // send message action
+        if (chatSend) chatSend.addEventListener('click', doSendMessage);
+        if (chatInput) chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSendMessage(); });
+
+        function doSendMessage() {
+            const txt = chatInput.value.trim();
+            if (!txt) return;
+            appendUserBubble(txt);
+            chatInput.value = '';
+            // assistant immediate small ack then follow-up
+            setTimeout(() => appendBotBubble('Thanks — we received your message. Our team will contact you soon.'), 650);
+
+            // if user logged in, personalize assistant subline
+            if (DB.user) assistantSub.textContent = `Hi ${DB.user.name}, how can I help?`;
+            else assistantSub.textContent = `We'll get back to you soon`;
+        }
+
+        // tidy: prevent accidental page scroll to top on anchor clicks used in modals
+        document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+        // ==========================================
+        // FOOTER CONNECTION (FIXED FOR LEADER)
+        // ==========================================
+
+        // 1. Footer Sign Up -> Opens Signup Modal
+        const footerSignup = document.getElementById('footerSignupBtn');
+        if (footerSignup) {
+            footerSignup.addEventListener('click', function (e) {
+                e.preventDefault();
+                showModal('signupModal'); // Direct Modal khol dega
+            });
+        }
+
+        // 2. Footer Support -> Opens Chatbot
+        const footerSupport = document.getElementById('footerSupportBtn');
+        if (footerSupport) {
+            footerSupport.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Chatbot kholne ki logic
+                const chatBox = document.getElementById('chatbotBox');
+                chatBox.style.display = 'flex';
+                chatBox.setAttribute('aria-hidden', 'false');
+            });
+        }
+
+        /* --- NEW LUXURY NOTIFICATION SYSTEM --- */
+        function showToast(message, type = 'success') {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                document.body.appendChild(container);
+            }
+
+            let icon = type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check';
+
+            const toast = document.createElement('div');
+            toast.className = 'vip-toast';
+            toast.innerHTML = `
+        <i class="fa-solid ${icon}"></i>
+        <span>${message}</span>
+    `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.4s forwards';
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+    </script>
+
+    <script>
+        /* ==================================================
+           MAGICAL SEARCH INTELLIGENCE (FINAL FIX V2)
+           ================================================== */
+
+        // Yahan hum exact URL parameters set kar rahe hain
+        const searchKeywords = [
+            { name: "Canon Cameras", params: "brand=Canon&cat=camera" },
+            { name: "Sony Alpha Cameras", params: "brand=Sony&cat=camera" },
+            { name: "Nikon Z Series", params: "brand=Nikon&cat=camera" },
+            { name: "Fujifilm GFX", params: "brand=Fujifilm&cat=camera" },
+            { name: "Canon Lenses", params: "brand=Canon&cat=lens" },
+            { name: "Sony Lenses", params: "brand=Sony&cat=lens" },
+            { name: "Rode Microphones", params: "brand=Rode&cat=audio" },
+            { name: "Godox Lighting", params: "brand=Godox&cat=lighting" },
+            { name: "Manfrotto Tripods", params: "brand=Manfrotto&cat=tripod" },
+            { name: "SanDisk Memory", params: "brand=SanDisk&cat=memory" },
+            { name: "Camera Bags", params: "cat=bag" }
+        ];
+
+        const suggestionsBox = document.getElementById('suggestionsBox');
+        const searchInput = document.getElementById('searchInput');
+
+        function handleSearch(query) {
+            const value = query.toLowerCase().trim();
+
+            if (!suggestionsBox) return;
+            suggestionsBox.innerHTML = '';
+
+            if (value.length < 1) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+
+            // Filter Logic
+            const matches = searchKeywords.filter(item =>
+                item.name.toLowerCase().includes(value)
+            );
+
+            suggestionsBox.style.display = 'flex';
+
+            if (matches.length > 0) {
+                matches.forEach(match => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.innerHTML = `<i class="bi bi-search"></i> ${match.name}`;
+
+                    // CLICK KARNE PAR EXACT FILTER LAGEGA
+                    div.onclick = () => {
+                        window.location.href = `FotoLabProductsPage.html?${match.params}`;
+                    };
+                    suggestionsBox.appendChild(div);
+                });
+            } else {
+                suggestionsBox.innerHTML = `<div class="no-result">✨ No magical items found for "${query}"</div>`;
+            }
+        }
+
+        // Enter dabane par simple text search (Fallback)
+        if (searchInput) {
+            searchInput.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    const term = searchInput.value;
+                    window.location.href = `FotoLabProductsPage.html?search=${encodeURIComponent(term)}`;
+                }
+            });
+        }
+
+        // Click Outside Close
+        document.addEventListener('click', function (e) {
+            if (searchInput && suggestionsBox) {
+                if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+                    suggestionsBox.style.display = 'none';
+                }
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

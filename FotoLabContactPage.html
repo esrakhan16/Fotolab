@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📸 Fotolab — Where Light Becomes Luxury ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="Fotolabstyling.css">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fotonav">
+    <div class="container-fluid">
+
+      <!-- LOGO -->
+      <a class="navbar-brand nav-logo" href="#">
+        <img src="FotoLabImages/FotolabLogo.png" alt="Logo">
+      </a>
+
+      <!-- Toggle -->
+      <button class="navbar-toggler text-gold" type="button" data-bs-toggle="collapse"
+        data-bs-target="#fotonavCollapse">
+        <img src="FotoLabImages/ToggleLogo.png" style="width:32px;">
+      </button>
+
+      <div class="collapse navbar-collapse" id="fotonavCollapse">
+        <ul class="navbar-nav ms-auto align-items-center gap-3">
+
+          <!-- HOME -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="index.html">
+              <img src="FotoLabImages/HomeLogo.png" class="nav-icon"> Home
+            </a>
+          </li>
+
+          <!-- CONTACT -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="FotoLabContactPage.html">
+              <img src="FotoLabImages/ContactLogo.png" class="nav-icon"> Contact
+            </a>
+          </li>
+
+          <!-- PRODUCTS DROPDOWN -->
+          <li class="nav-item dropdown d-flex align-items-center">
+
+            <a class="nav-link vip-link pe-1" href="FotoLabProductsPage.html">
+              <img src="FotoLabImages/ProductsLogo.png" class="nav-icon">
+              <span>Products</span>
+            </a>
+
+            <a class="nav-link dropdown-toggle ps-1" href="#" id="productsDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"
+              style="display:flex; align-items:center; cursor: pointer;">
+              <i class="bi bi-chevron-down" style="font-size: 12px; color: var(--gold); margin-top: 3px;"></i>
+            </a>
+
+            <ul class="dropdown-menu simple-dd" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=camera">Cameras</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=lens">Lenses</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=audio">Pro Audio</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=memory">Memory Cards</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=tripod">Tripods</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=lighting">Lighting</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=bag">Bags & Cases</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=memory">Memory Cards</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=accessory">Accessories</a></li>
+            </ul>
+          </li>
+
+          <!-- ABOUT -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="FotoLabAboutPage.html">
+              <img src="FotoLabImages/AboutUsLogo.png" class="nav-icon"> About
+            </a>
+          </li>
+
+          <li class="nav-item d-flex align-items-center">
+            <div class="search-wrapper">
+
+              <img src="FotoLabImages/SearchLogo.png" class="search-icon">
+
+              <input type="text" id="searchInput" class="search-input" placeholder="Search gear..." autocomplete="off"
+                onkeyup="handleSearch(this.value)" onfocus="handleSearch(this.value)" />
+
+              <div class="suggestions-box" id="suggestionsBox"></div>
+
+            </div>
+          </li>
+
+          <!-- SIGN UP  -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="javascript:void(0)" id="navSignupBtn">
+              <img src="FotoLabImages/SignUpLogo.png" class="nav-icon"> Register
+            </a>
+          </li>
+
+          <!-- SIGN IN -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="javascript:void(0)" id="navSigninBtn">
+              <img src="FotoLabImages/SignInLogo.png" class="nav-icon"> Login
+            </a>
+          </li>
+
+          <!-- SUPPORT -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="javascript:void(0)" id="supportBtn">
+              <img src="FotoLabImages/SupportLogo.png" class="nav-icon"> Support
+            </a>
+          </li>
+
+          <!-- CART -->
+          <li class="nav-item">
+            <img src="FotoLabImages/CartLogo.png" class="cart-icon">
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- REGISTER MODAL -->
+  <div id="signupModal" class="fotolab-modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close Sign Up">✕</button>
+      <h3 class="modal-title">✨ Create Your Fotolab Account</h3>
+      <form id="signupForm" class="form-stack" novalidate>
+
+        <div class="input-group">
+          <input type="text" id="regName" placeholder="Full name (Min 3 letters)" required>
+          <div id="errName" class="error-text"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="regEmail" placeholder="Email address" required disabled>
+          <div id="errEmail" class="error-text"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="tel" id="regPhone" placeholder="Phone (0-9 only)" maxlength="11" required disabled>
+          <div id="errPhone" class="error-text"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="regAddress" placeholder="Address" required disabled>
+        </div>
+        <div class="input-group">
+          <input type="text" id="regPostal" placeholder="Postal code" required disabled>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="regPass" placeholder="Password (Strong)" required disabled>
+          <div id="errPass" class="error-text"></div>
+        </div>
+
+        <button type="submit" id="btnRegister" class="btn-primary full">Create account</button>
+      </form>
+      <div id="signupMsg" class="success-msg" aria-live="polite" hidden></div>
+      <p class="center small">Already have an account? <a href="#" id="linkToSignin">Login</a></p>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="signinModal" class="fotolab-modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close Sign In">✕</button>
+      <h3 class="modal-title">🔐 Login to Fotolab</h3>
+
+      <form id="signinForm" class="form-stack">
+        <input type="email" id="signinEmail" name="email" placeholder="Email address" required>
+        <input type="password" id="signinPassword" name="password" placeholder="Password" required>
+        <button type="submit" class="btn-primary full">Login</button>
+      </form>
+
+      <div id="signinMsg" class="error-msg" aria-live="polite"></div>
+
+      <div id="userProfile" class="user-profile" hidden>
+        <img src="FotoLabImages/ShinhyeLogo.png" alt="avatar">
+        <div>
+          <p class="welcome">Welcome back, <span id="userNameShow"></span> 🎉</p>
+          <p class="small dim" id="userEmailShow"></p>
+        </div>
+      </div>
+
+      <p class="center small">Don't have an account? <a href="#" id="linkToSignup">Create one</a></p>
+    </div>
+  </div>
+
+  <!-- CHATBOT BOX (hidden initially) -->
+  <div id="chatbotBox" class="chatbot-box" aria-hidden="true" role="dialog" aria-label="Support chat">
+    <div class="chatbot-header">
+      <div class="assistant">
+        <img src="FotoLabImages/Fotolabassistant.png" alt="assistant" />
+        <div>
+          <div class="assistant-name">Fotolab Support Assistant</div>
+          <div class="assistant-sub" id="assistantSub">How can I help?</div>
+        </div>
+      </div>
+      <button class="chat-close" id="chatCloseBtn" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+      <div class="bot-bubble">Hi! I'm Fotolab Support — how can I help you today?</div>
+    </div>
+
+    <div class="chat-footer">
+      <input id="chatInput" type="text" placeholder="Type a message..." aria-label="Type a message">
+      <button id="chatSendBtn" class="btn-send">➤</button>
+    </div>
+  </div>
+
+  <!--Contact page-->
+
+  <!-- HERO -->
+  <section class="herosec" id="hero">
+    <h2>Get in Touch with FOTOLAB</h2>
+    <p>Have questions or need assistance? Our team at FOTOLAB is here to provide fast, friendly support for all your
+      photography needs. Send us a message, email directly, or find us on the map — we’re ready to help!</p>
+  </section>
+
+  <!-- MAIN GRID -->
+  <section class="containers">
+
+    <!-- FORM CARD -->
+    <div class="card">
+      <h2 style="color:var(--gold);margin-top:0;">Send a Message</h2>
+      <form id="cForm" novalidate>
+        <input type="text" id="name" placeholder="Your Name" maxlength="50">
+        <div id="nameError" class="error"></div>
+
+        <input type="email" id="email" placeholder="Your Email" maxlength="50">
+        <div id="emailError" class="error"></div>
+
+        <textarea id="msg" placeholder="Your Message" maxlength="500"></textarea>
+        <div id="msgError" class="error"></div>
+
+        <button class="formbutton" type="submit">Submit</button>
+        <div id="successMsg" class="success"></div>
+      </form>
+    </div>
+
+    <!-- EMAIL CARD -->
+    <div class="card email-card"
+      style="background-image: url('FotoLabImages/email.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+      <h2 style="color: rgb(243, 239, 204); margin-bottom: 10px;">Email Us Directly</h2>
+      <a href="mailto:support@fotolab.kr" style="font-size: 22px;">support@fotolab.kr</a>
+    </div>
+
+    <!-- MAP CARD -->
+    <div class="card map-card">
+      <h2 style="color:var(--gold);margin-top:0;">Our Location</h2>
+      <iframe id="mapFrame"
+        src="https://www.google.com/maps?q=Fotolab+Studio+Gangnam-gu+Seoul+South+Korea+06000&output=embed"
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+
+  </section>
+
+  <!-- FORM VALIDATION & HERO SLIDESHOW -->
+  <script>
+    const form = document.getElementById("cForm");
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const msgField = document.getElementById("msg");
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const msgError = document.getElementById("msgError");
+    const successMsg = document.getElementById("successMsg");
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    nameField.addEventListener("input", validateName);
+    emailField.addEventListener("input", validateEmail);
+    msgField.addEventListener("input", validateMessage);
+
+    function validateName() {
+      const name = nameField.value.trim();
+      if (name.length < 3) { showError(nameField, nameError, "Name must be at least 3 characters."); return false; }
+      showSuccess(nameField, nameError, ""); return true;
+    }
+    function validateEmail() {
+      const email = emailField.value.trim();
+      if (!emailPattern.test(email)) { showError(emailField, emailError, "Please enter a valid email."); return false; }
+      showSuccess(emailField, emailError, ""); return true;
+    }
+    function validateMessage() {
+      const msg = msgField.value.trim();
+      if (msg.length < 5) { showError(msgField, msgError, "Message must be at least 5 characters."); return false; }
+      showSuccess(msgField, msgError, ""); return true;
+    }
+    function showError(field, errorElement, msg) {
+      errorElement.textContent = msg;
+      field.classList.remove("success-field");
+      field.classList.add("error-field");
+    }
+    function showSuccess(field, errorElement, msg) {
+      errorElement.textContent = "";
+      field.classList.remove("error-field");
+      field.classList.add("success-field");
+      if (msg) successMsg.textContent = msg;
+    }
+    // UPDATED CONTACT FORM SUBMISSION
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const validName = validateName();
+      const validEmail = validateEmail();
+      const validMsg = validateMessage();
+
+      if (validName && validEmail && validMsg) {
+
+        // 1. CALL THE LUXURY TOAST
+        if (typeof showToast === 'function') {
+          showToast("Message Sent Successfully! ✨", "success");
+        } else {
+          alert("Message Sent!"); // Fallback
+        }
+
+        // 2. Visual Cleanup
+        form.reset();
+        nameField.classList.remove("success-field");
+        emailField.classList.remove("success-field");
+        msgField.classList.remove("success-field");
+        successMsg.textContent = "";
+
+      } else {
+        // Agar error ho to Toast
+        if (typeof showToast === 'function') {
+          showToast("Please fill all fields correctly!", "error");
+        }
+      }
+    });
+
+    // HERO SLIDESHOW
+    const heroImages = ["images/jeff-hopper-iCtJF-A5hvs-unsplash.jpg",
+      "images/aravind-kumar-MBOA0mO43CA-unsplash.jpg",
+      "images/theregisti-HSXIp58yPyI-unsplash.jpg"];
+    let currentHero = 0;
+    const heroSection = document.getElementById('hero');
+
+    heroSection.style.backgroundImage = `url('${heroImages[currentHero]}')`;
+
+    setInterval(() => {
+      currentHero = (currentHero + 1) % heroImages.length;
+      heroSection.style.backgroundImage = `url('${heroImages[currentHero]}')`;
+    }, 5000);
+  </script>
+
+  <!-- ===================== FOOTER ===================== -->
+
+  <footer class="fotolab-footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6 footer-col">
+          <img src="FotoLabImages/FotolabLogo.png" alt="Fotolab" class="footer-logo">
+          <p class="footer-desc">
+            Empowering creators with the finest photography gear since 1991. Where light meets luxury.
+          </p>
+
+          <h5 class="footer-heading">Opening Hours</h5>
+          <ul class="footer-hours">
+            <li><span>Mon - Sat</span> <span>09 Am - 09 Pm</span></li>
+            <li><span>Sunday</span> <span style="color: #ff4757;">09 Am - 05 Pm</span></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-col">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="FotoLabHome.html">Home</a></li>
+            <li><a href="FotoLabAboutPage.html">About Us</a></li>
+            <li><a href="FotoLabContactPage.html">Contact Us</a></li>
+            <li><a href="javascript:void(0)" onclick="openSigninModal()">Member Login</a></li>
+            <li><a href="javascript:void(0)" onclick="openSignupModal()">Register</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-heading">Our Collections</h5>
+          <ul class="footer-links">
+            <li><a href="FotoLabProductsPage.html?cat=camera">Digital Cameras</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=lens">Premium Lenses</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=audio">Pro Audio Gear</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=lighting">Studio Lighting</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=tripod">Stabilizers & Tripods</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-heading">Contact Us</h5>
+          <ul class="contact-list">
+            <li><i class="bi bi-telephone-fill"></i> +82 10 1234 5678</li>
+            <li><i class="bi bi-envelope-fill"></i> support@fotolab.kr</li>
+            <li><i class="bi bi-geo-alt-fill"></i> Gangnam-gu, Seoul, Korea</li>
+          </ul>
+
+          <h5 class="footer-heading" style="margin-top: 20px;">Follow @Fotolab</h5>
+          <div class="footer-socials">
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Fotolab — All Rights Reserved | Privacy Statement</p>
+    </div>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <i class="bi bi-chevron-up"></i>
+    </button>
+  </footer>
+
+  <script>
+
+    // Initialize testimonials carousel (optional timing tweak)
+    const testi = document.getElementById('testi');
+    if (testi && window.bootstrap) {
+      new bootstrap.Carousel(testi, { interval: 3800, ride: true });
+    }
+
+    // Footer links to existing modals/chat (if present in your code)
+    const fsu = document.getElementById('footerSignup');
+    if (fsu && typeof openSignupModal === 'function') {
+      fsu.addEventListener('click', e => { e.preventDefault(); openSignupModal(); });
+    }
+    const fsup = document.getElementById('footerSupport');
+    if (fsup && typeof openChatbot === 'function') {
+      fsup.addEventListener('click', e => { e.preventDefault(); openChatbot(); });
+    }
+
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    const footer = document.querySelector(".fotolab-footer");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          scrollBtn.classList.add("show");
+        } else {
+          scrollBtn.classList.remove("show");
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1
+    });
+
+    if (footer) {
+      observer.observe(footer);
+    }
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+  </script>
+
+  <script>
+    /* ==================================================
+       MAGICAL SEARCH INTELLIGENCE (FINAL FIX V2)
+       ================================================== */
+
+    // Yahan hum exact URL parameters set kar rahe hain
+    const searchKeywords = [
+      { name: "Canon Cameras", params: "brand=Canon&cat=camera" },
+      { name: "Sony Alpha Cameras", params: "brand=Sony&cat=camera" },
+      { name: "Nikon Z Series", params: "brand=Nikon&cat=camera" },
+      { name: "Fujifilm GFX", params: "brand=Fujifilm&cat=camera" },
+      { name: "Canon Lenses", params: "brand=Canon&cat=lens" },
+      { name: "Sony Lenses", params: "brand=Sony&cat=lens" },
+      { name: "Rode Microphones", params: "brand=Rode&cat=audio" },
+      { name: "Godox Lighting", params: "brand=Godox&cat=lighting" },
+      { name: "Manfrotto Tripods", params: "brand=Manfrotto&cat=tripod" },
+      { name: "SanDisk Memory", params: "brand=SanDisk&cat=memory" },
+      { name: "Camera Bags", params: "cat=bag" }
+    ];
+
+    const suggestionsBox = document.getElementById('suggestionsBox');
+    const searchInput = document.getElementById('searchInput');
+
+    function handleSearch(query) {
+      const value = query.toLowerCase().trim();
+
+      if (!suggestionsBox) return;
+      suggestionsBox.innerHTML = '';
+
+      if (value.length < 1) {
+        suggestionsBox.style.display = 'none';
+        return;
+      }
+
+      // Filter Logic
+      const matches = searchKeywords.filter(item =>
+        item.name.toLowerCase().includes(value)
+      );
+
+      suggestionsBox.style.display = 'flex';
+
+      if (matches.length > 0) {
+        matches.forEach(match => {
+          const div = document.createElement('div');
+          div.className = 'suggestion-item';
+          div.innerHTML = `<i class="bi bi-search"></i> ${match.name}`;
+
+          // CLICK KARNE PAR EXACT FILTER LAGEGA
+          div.onclick = () => {
+            window.location.href = `FotoLabProductsPage.html?${match.params}`;
+          };
+          suggestionsBox.appendChild(div);
+        });
+      } else {
+        suggestionsBox.innerHTML = `<div class="no-result">✨ No magical items found for "${query}"</div>`;
+      }
+    }
+
+    // Enter dabane par simple text search (Fallback)
+    if (searchInput) {
+      searchInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          const term = searchInput.value;
+          window.location.href = `FotoLabProductsPage.html?search=${encodeURIComponent(term)}`;
+        }
+      });
+    }
+
+    // Click Outside Close
+    document.addEventListener('click', function (e) {
+      if (searchInput && suggestionsBox) {
+        if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+          suggestionsBox.style.display = 'none';
+        }
+      }
+    });
+  </script>
+
+  <script>
+    const DB = { user: null }; // simple in-memory "database"
+
+    function showModal(id) { document.getElementById(id).setAttribute('aria-hidden', 'false'); }
+    function hideModal(id) { document.getElementById(id).setAttribute('aria-hidden', 'true'); }
+
+    // OPEN MODALS
+    document.getElementById('navSignupBtn').addEventListener('click', () => showModal('signupModal'));
+    document.getElementById('navSigninBtn').addEventListener('click', () => showModal('signinModal'));
+
+    // CLOSE MODALS WITH CROSS BUTTON
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('.fotolab-modal');
+        if (modal) modal.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // LINK SWITCH
+    document.getElementById('linkToSignin').addEventListener('click', e => {
+      e.preventDefault();
+      hideModal('signupModal');
+      showModal('signinModal');
+      if (DB.user) document.getElementById('signinEmail').value = DB.user.email;
+    });
+    document.getElementById('linkToSignup').addEventListener('click', e => {
+      e.preventDefault();
+      hideModal('signinModal');
+      showModal('signupModal');
+    });
+
+    // REGISTER FORM (FIXED - SAME AS HOME PAGE)
+    // REGISTER FORM (FINAL & FIXED)
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // Inputs
+      const nameIn = document.getElementById('regName');
+      const emailIn = document.getElementById('regEmail');
+      const phoneIn = document.getElementById('regPhone');
+      const addIn = document.getElementById('regAddress');
+      const postIn = document.getElementById('regPostal');
+      const passIn = document.getElementById('regPass');
+      const btn = document.getElementById('btnRegister');
+
+      // Error Divs
+      const errName = document.getElementById('errName');
+      const errEmail = document.getElementById('errEmail');
+      const errPhone = document.getElementById('errPhone');
+      const errPass = document.getElementById('errPass');
+
+      // --- HELPER: SHOW ERROR ---
+      function showError(input, div, msg) {
+        if (input) {
+          input.classList.remove('input-success');
+          input.style.border = "1px solid #ff4757";
+        }
+        if (div) {
+          div.innerText = msg;
+          div.style.display = "block";
+          div.classList.add('error-visible');
+        }
+      }
+
+      // --- HELPER: SHOW SUCCESS ---
+      function showSuccess(input, div) {
+        if (input) {
+          input.classList.add('input-success');
+          input.style.border = "1px solid #2ed573";
+        }
+        if (div) {
+          div.innerText = "";
+          div.style.display = "none";
+          div.classList.remove('error-visible');
+        }
+      }
+
+      // --- 1. REAL-TIME CHECKING ---
+
+      // Name Check
+      if (nameIn) {
+        nameIn.addEventListener('input', function () {
+          const val = this.value.trim();
+          if (/\d/.test(val)) {
+            showError(this, errName, "Numbers not allowed!");
+            return;
+          }
+          if (val.length < 3) {
+            showError(this, errName, "Name is too short (Min 3 chars)");
+            if (emailIn) emailIn.disabled = true;
+          } else {
+            showSuccess(this, errName);
+            if (emailIn) emailIn.disabled = false;
+          }
+        });
+      }
+
+      // Email Check
+      if (emailIn) {
+        emailIn.addEventListener('input', function () {
+          const val = this.value.trim();
+          if (!val.includes('@')) {
+            showError(this, errEmail, "Missing '@' symbol");
+            if (phoneIn) phoneIn.disabled = true;
+          } else if (!val.includes('.')) {
+            showError(this, errEmail, "Missing domain (.com)");
+            if (phoneIn) phoneIn.disabled = true;
+          } else {
+            showSuccess(this, errEmail);
+            if (phoneIn) phoneIn.disabled = false;
+          }
+        });
+      }
+
+      // Phone Check
+      if (phoneIn) {
+        phoneIn.addEventListener('input', function () {
+          this.value = this.value.replace(/[^0-9]/g, '');
+         if (this.value.length < 11) {  
+    showError(this, errPhone, "Must be exactly 11 digits");
+    if (addIn) addIn.disabled = true;
+    if (postIn) postIn.disabled = true;
+} else {
+    showSuccess(this, errPhone);
+    if (addIn) addIn.disabled = false;
+    if (postIn) postIn.disabled = false;
+}
+        });
+      }
+
+      // Address & Post Check
+      function checkAddr() {
+        if (addIn && postIn && passIn) {
+          if (addIn.value && postIn.value) passIn.disabled = false;
+          else passIn.disabled = true;
+        }
+      }
+      if (addIn) addIn.addEventListener('input', checkAddr);
+      if (postIn) postIn.addEventListener('input', checkAddr);
+
+      // Password Check
+      if (passIn) {
+        passIn.addEventListener('input', function () {
+          const val = this.value;
+          const isStrong = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$/.test(val);
+          if (!isStrong) {
+            showError(this, errPass, "Weak! Need: 1 Upper, 1 Special, 8 Chars");
+          } else {
+            showSuccess(this, errPass);
+          }
+        });
+      }
+
+      // --- 2. FINAL SUBMIT ---
+      const signupForm = document.getElementById('signupForm');
+      if (signupForm) {
+        signupForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // Check All Again
+          const isName = nameIn.value.length >= 3;
+          const isEmail = emailIn.value.includes('@') && emailIn.value.includes('.');
+          const isPhone = phoneIn.value.length === 11;
+          const isPass = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$/.test(passIn.value);
+
+          if (isName && isEmail && isPhone && isPass) {
+
+            // 1. DATA SAVE KARO
+            if (typeof DB !== 'undefined') {
+              DB.user = {
+                name: nameIn.value,
+                email: emailIn.value.toLowerCase(),
+                password: passIn.value
+              };
+            }
+
+            // 2. SUCCESS MESSAGE
+            if (typeof showToast === 'function') {
+              showToast("Account Created Successfully! Redirecting...", "success");
+            } else {
+              alert("Account Created! Redirecting...");
+            }
+
+            // 3. AUTO SWITCH TO LOGIN
+            setTimeout(() => {
+              if (typeof hideModal === 'function') hideModal('signupModal');
+              if (typeof showModal === 'function') showModal('signinModal');
+
+              const loginInput = document.getElementById('signinEmail');
+              if (loginInput && typeof DB !== 'undefined' && DB.user) {
+                loginInput.value = DB.user.email;
+              }
+            }, 1500);
+
+          } else {
+            if (typeof showToast === 'function') {
+              showToast("Please fix the errors in red!", "error");
+            } else {
+              alert("Please fix errors!");
+            }
+          }
+        });
+      }
+    });
+    /* --- LUXURY TOAST NOTIFICATION SYSTEM --- */
+    function showToast(message, type = 'success') {
+      let container = document.getElementById('toast-container');
+
+      // Agar container nahi hai to banao
+      if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+      }
+
+      // Icon set karo
+      let iconClass = type === 'error' ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill';
+      let iconColor = type === 'error' ? '#ff4757' : '#E5C07B';
+
+      // Toast banao
+      const toast = document.createElement('div');
+      toast.className = 'vip-toast';
+      toast.innerHTML = `
+            <i class="bi ${iconClass}" style="color:${iconColor}; font-size:18px;"></i>
+            <span class="vip-toast-text">${message}</span>
+        `;
+
+      // Screen par dikhao
+      container.appendChild(toast);
+
+      // 4 Second baad hata do
+      setTimeout(() => {
+        toast.style.animation = 'slideOutRight 0.5s forwards';
+        setTimeout(() => {
+          if (toast.parentNode) toast.remove();
+        }, 500);
+      }, 4000);
+    }
+
+    // SIGNIN FORM
+    document.getElementById('signinForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('signinEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('signinPassword').value.trim();
+      const msgEl = document.getElementById('signinMsg');
+      if (!DB.user) {
+        msgEl.textContent = '⚠️ No account found. Please register yourself first.';
+        return;
+      }
+      if (email === DB.user.email && pass === DB.user.password) {
+        msgEl.textContent = '';
+        document.getElementById('userNameShow').textContent = DB.user.name;
+        document.getElementById('userEmailShow').textContent = DB.user.email;
+        document.getElementById('userProfile').hidden = false;
+        setTimeout(() => hideModal('signinModal'), 650);
+      } else {
+        msgEl.textContent = '❌ Incorrect email or password.';
+      }
+    });
+
+    // ESC key closes modal
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        hideModal('signupModal');
+        hideModal('signinModal');
+      }
+    });
+  </script>
+
+  <script>
+    function qs(id) { return document.getElementById(id); }
+    // ###############################
+    // CHATBOT behavior
+    // ###############################
+    const chatBox = qs('chatbotBox');
+    const chatClose = qs('chatCloseBtn');
+    const chatSend = qs('chatSendBtn');
+    const chatInput = qs('chatInput');
+    const chatBody = qs('chatBody');
+    const assistantSub = qs('assistantSub');
+
+    function appendUserBubble(text) {
+      const d = document.createElement('div');
+      d.className = 'user-bubble';
+      d.textContent = text;
+      chatBody.appendChild(d);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+    function appendBotBubble(text) {
+      const d = document.createElement('div');
+      d.className = 'bot-bubble';
+      d.textContent = text;
+      chatBody.appendChild(d);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    window.openChatbot = function () { // exposed if needed
+      if (!chatBox) return;
+      chatBox.style.display = 'flex';
+      chatBox.setAttribute('aria-hidden', 'false');
+      // friendly animation
+      chatBox.animate([{ transform: 'translateY(12px)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 260, easing: 'cubic-bezier(.2,.9,.2,1)' });
+    };
+
+    window.closeChatbot = function () {
+      if (!chatBox) return;
+      chatBox.style.display = 'none';
+      chatBox.setAttribute('aria-hidden', 'true');
+    };
+
+    // open helpers used by navbar click handlers
+    window.openSignupModal = function () { showModal('signupModal'); };
+    window.openSigninModal = function () { showModal('signinModal'); };
+    window.openChatbot = window.openChatbot; // noop if already defined
+
+    // wire navbar support button to open chatbot
+    const supportButton = qs('supportBtn');
+    if (supportButton) supportButton.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      // only open, don't close by outside clicks
+      if (chatBox.style.display === 'flex') {
+        // already open — do nothing or bring to front
+        chatBox.style.display = 'flex';
+      } else {
+        chatBox.style.display = 'flex';
+        chatBox.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    // chat close (only via cross)
+    if (chatClose) chatClose.addEventListener('click', function () { chatBox.style.display = 'none'; chatBox.setAttribute('aria-hidden', 'true'); });
+
+    // send message action
+    if (chatSend) chatSend.addEventListener('click', doSendMessage);
+    if (chatInput) chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSendMessage(); });
+
+    function doSendMessage() {
+      const txt = chatInput.value.trim();
+      if (!txt) return;
+      appendUserBubble(txt);
+      chatInput.value = '';
+      // assistant immediate small ack then follow-up
+      setTimeout(() => appendBotBubble('Thanks — we received your message. Our team will contact you soon.'), 650);
+
+      // if user logged in, personalize assistant subline
+      if (DB.user) assistantSub.textContent = `Hi ${DB.user.name}, how can I help?`;
+      else assistantSub.textContent = `We'll get back to you soon`;
+    }
+
+    // tidy: prevent accidental page scroll to top on anchor clicks used in modals
+    document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+
+    // ==========================================
+    // FOOTER CONNECTION (FIXED FOR LEADER)
+    // ==========================================
+
+    // 1. Footer Sign Up -> Opens Signup Modal
+    const footerSignup = document.getElementById('footerSignupBtn');
+    if (footerSignup) {
+      footerSignup.addEventListener('click', function (e) {
+        e.preventDefault();
+        showModal('signupModal'); // Direct Modal khol dega
+      });
+    }
+
+    // 2. Footer Support -> Opens Chatbot
+    const footerSupport = document.getElementById('footerSupportBtn');
+    if (footerSupport) {
+      footerSupport.addEventListener('click', function (e) {
+        e.preventDefault();
+        // Chatbot kholne ki logic
+        const chatBox = document.getElementById('chatbotBox');
+        chatBox.style.display = 'flex';
+        chatBox.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

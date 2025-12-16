@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📸 Fotolab — Where Light Becomes Luxury ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="Fotolabstyling.css">
+</head>
+
+<body>
+
+  <!-- Fotolab Loader -->
+  <div id="fotoloader" class="loader">
+    <div class="loader-inner">
+      <img src="FotoLabImages/FotolabLogo.png" alt="Fotolab" class="loader-logo">
+      <p class="loader-text">✨ Welcome to Fotolab — loading magic...</p>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('fotoloader');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+      }, 300);
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    });
+  </script>
+
+  <nav class="navbar navbar-expand-lg fotonav">
+    <div class="container-fluid">
+
+      <!-- LOGO -->
+      <a class="navbar-brand nav-logo" href="#">
+        <img src="FotoLabImages/FotolabLogo.png" alt="Logo">
+      </a>
+
+      <!-- Toggle -->
+      <button class="navbar-toggler text-gold" type="button" data-bs-toggle="collapse"
+        data-bs-target="#fotonavCollapse">
+        <img src="FotoLabImages/ToggleLogo.png" style="width:32px;">
+      </button>
+
+      <div class="collapse navbar-collapse" id="fotonavCollapse">
+        <ul class="navbar-nav ms-auto align-items-center gap-3">
+
+          <!-- HOME -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="index.html">
+              <img src="FotoLabImages/HomeLogo.png" class="nav-icon"> Home
+            </a>
+          </li>
+
+          <!-- CONTACT -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="FotoLabContactPage.html">
+              <img src="FotoLabImages/ContactLogo.png" class="nav-icon"> Contact
+            </a>
+          </li>
+
+          <!-- PRODUCTS DROPDOWN -->
+          <li class="nav-item dropdown d-flex align-items-center">
+
+            <a class="nav-link vip-link pe-1" href="FotoLabProductsPage.html">
+              <img src="FotoLabImages/ProductsLogo.png" class="nav-icon">
+              <span>Products</span>
+            </a>
+
+            <a class="nav-link dropdown-toggle ps-1" href="#" id="productsDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"
+              style="display:flex; align-items:center; cursor: pointer;">
+              <i class="bi bi-chevron-down" style="font-size: 12px; color: var(--gold); margin-top: 3px;"></i>
+            </a>
+
+            <ul class="dropdown-menu simple-dd" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=camera">Cameras</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=lens">Lenses</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=audio">Pro Audio</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=memory">Memory Cards</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=tripod">Tripods</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=lighting">Lighting</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=bag">Bags & Cases</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=memory">Memory Cards</a></li>
+              <li><a class="dropdown-item" href="FotoLabProductsPage.html?cat=accessory">Accessories</a></li>
+            </ul>
+          </li>
+
+          <!-- ABOUT -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="FotoLabAboutPage.html">
+              <img src="FotoLabImages/AboutUsLogo.png" class="nav-icon"> About
+            </a>
+          </li>
+          <!--SEARCH-->
+          <li class="nav-item d-flex align-items-center">
+            <div class="search-wrapper">
+
+              <img src="FotoLabImages/SearchLogo.png" class="search-icon">
+
+              <input type="text" id="searchInput" class="search-input" placeholder="Search gear..." autocomplete="off"
+                onkeyup="handleSearch(this.value)" onfocus="handleSearch(this.value)" />
+
+              <div class="suggestions-box" id="suggestionsBox"></div>
+
+            </div>
+          </li>
+
+          <!-- SIGN UP  -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="javascript:void(0)" id="navSignupBtn">
+              <img src="FotoLabImages/SignUpLogo.png" class="nav-icon"> Register
+            </a>
+          </li>
+
+          <!-- SIGN IN -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="javascript:void(0)" id="navSigninBtn">
+              <img src="FotoLabImages/SignInLogo.png" class="nav-icon"> Login
+            </a>
+          </li>
+
+          <!-- SUPPORT -->
+          <li class="nav-item">
+            <a class="nav-link vip-link" href="javascript:void(0)" id="supportBtn">
+              <img src="FotoLabImages/SupportLogo.png" class="nav-icon"> Support
+            </a>
+          </li>
+
+          <!-- CART -->
+          <li class="nav-item">
+            <img src="FotoLabImages/CartLogo.png" class="cart-icon">
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- REGISTER MODAL -->
+  <div id="signupModal" class="fotolab-modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close Sign Up">✕</button>
+      <h3 class="modal-title">✨ Create Your Fotolab Account</h3>
+      <form id="signupForm" class="form-stack" novalidate>
+
+        <div class="input-group">
+          <input type="text" id="regName" placeholder="Full name (Min 3 letters)" required>
+          <div id="errName" class="error-text"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="regEmail" placeholder="Email address" required disabled>
+          <div id="errEmail" class="error-text"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="tel" id="regPhone" placeholder="Phone (0-9 only)" maxlength="11" required disabled>
+          <div id="errPhone" class="error-text"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="regAddress" placeholder="Address" required disabled>
+        </div>
+        <div class="input-group">
+          <input type="text" id="regPostal" placeholder="Postal code" required disabled>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="regPass" placeholder="Password (Strong)" required disabled>
+          <div id="errPass" class="error-text"></div>
+        </div>
+
+        <button type="submit" id="btnRegister" class="btn-primary full">Create account</button>
+      </form>
+
+      <div id="signupMsg" class="success-msg" aria-live="polite" hidden></div>
+      <p class="center small">Already have an account? <a href="#" id="linkToSignin">Login</a></p>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="signinModal" class="fotolab-modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close Sign In">✕</button>
+      <h3 class="modal-title">🔐 Login to Fotolab</h3>
+
+      <form id="signinForm" class="form-stack">
+        <input type="email" id="signinEmail" name="email" placeholder="Email address" required>
+        <input type="password" id="signinPassword" name="password" placeholder="Password" required>
+        <button type="submit" class="btn-primary full">Login</button>
+      </form>
+
+      <div id="signinMsg" class="error-msg" aria-live="polite"></div>
+
+      <div id="userProfile" class="user-profile" hidden>
+        <img src="FotoLabImages/ShinhyeLogo.png" alt="avatar">
+        <div>
+          <p class="welcome">Welcome back, <span id="userNameShow"></span> 🎉</p>
+          <p class="small dim" id="userEmailShow"></p>
+        </div>
+      </div>
+
+      <p class="center small">Don't have an account? <a href="#" id="linkToSignup">Create one</a></p>
+    </div>
+  </div>
+
+  <!-- CHATBOT BOX (hidden initially) -->
+  <div id="chatbotBox" class="chatbot-box" aria-hidden="true" role="dialog" aria-label="Support chat">
+    <div class="chatbot-header">
+      <div class="assistant">
+        <img src="FotoLabImages/Fotolabassistant.png" alt="assistant" />
+        <div>
+          <div class="assistant-name">Fotolab Support Assistant</div>
+          <div class="assistant-sub" id="assistantSub">How can I help?</div>
+        </div>
+      </div>
+      <button class="chat-close" id="chatCloseBtn" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+      <div class="bot-bubble">Hi! I'm Fotolab Support — how can I help you today?</div>
+    </div>
+
+    <div class="chat-footer">
+      <input id="chatInput" type="text" placeholder="Type a message..." aria-label="Type a message">
+      <button id="chatSendBtn" class="btn-send">➤</button>
+    </div>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="images/hero-fallback.jpg">
+      <source src="FotoLabImages/FotolabHeroVideo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="glass-box-hero">
+        <h1 class="hero-title">Master the Art of Light</h1>
+        <div class="hero-separator"></div>
+        <p class="hero-sub">
+          Premium gear for the visionaries.<br>
+          Experience photography redefined with <strong>Fotolab Luxury</strong>.
+        </p>
+        <a href="#collections" class="btn-cta">
+          <span>✨ Explore Gallery</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <!-- ===================== WELCOME ===================== -->
+
+  <section class="welcome-section">
+    <div class="container">
+      <div class="welcome-grid">
+        <div>
+          <h2 class="gold-title">Welcome to Fotolab</h2>
+          <p class="gold-sub">Cinematic photography & pro gear. Filter by brand or browse all categories.</p>
+
+          <div>
+            <div class="welcome-card">
+              <div class="wc-line"><span>Experience:</span> Cinematic photography & pro gear</div>
+              <div class="wc-line"><span>Founded:</span> Since 1991</div>
+              <div class="wc-line"><span>Location:</span> Gangnam-gu, Seoul</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ===================== CATEGORIES ===================== -->
+  <section id="collections" class="collections">
+    <div class="container">
+      <div class="row gx-3 gy-3 justify-content-center">
+
+        <!-- Cameras -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=camera">
+            <div class="card-info">
+              <img src="FotoLabImages/CameraIcon.png" class="card-icon" alt="Cameras">
+              <div class="card-text">
+                <div class="label">Cameras</div>
+                <div class="mini">Pro bodies, mirrorless, DSLRs</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Lenses -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=lens">
+            <div class="card-info">
+              <img src="FotoLabImages/LensesIcon.png" class="card-icon" alt="Lenses">
+              <div class="card-text">
+                <div class="label">Lenses</div>
+                <div class="mini">Primes, zooms, cinematic glass</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Pro Audio -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=audio">
+            <div class="card-info">
+              <img src="FotoLabImages/MicIcon.png" class="card-icon" alt="Pro Audio">
+              <div class="card-text">
+                <div class="label">Pro Audio</div>
+                <div class="mini">Mics, recorders, monitors</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Memory & Media -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=memory">
+            <div class="card-info">
+              <img src="FotoLabImages/MemoryCardIcon.png" class="card-icon" alt="Memory & Media">
+              <div class="card-text">
+                <div class="label">Memory & Media</div>
+                <div class="mini">Cards, readers, storage</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Tripod & Support -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=tripod">
+            <div class="card-info">
+              <img src="FotoLabImages/TripodIcon.png" class="card-icon" alt="Tripod & Support">
+              <div class="card-text">
+                <div class="label">Tripod & Support</div>
+                <div class="mini">Tripods, gimbals, rigs</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Lighting & Studio -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=lighting">
+            <div class="card-info">
+              <img src="FotoLabImages/LightningIcon.png" class="card-icon" alt="Lighting & Studio">
+              <div class="card-text">
+                <div class="label">Lighting & Studio</div>
+                <div class="mini">LEDs, strobes, modifiers</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Bags & Cases -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=bag">
+            <div class="card-info">
+              <img src="FotoLabImages/BagIcon.png" class="card-icon" alt="Bags & Cases">
+              <div class="card-text">
+                <div class="label">Bags & Cases</div>
+                <div class="mini">Carry like a pro</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Accessories -->
+        <div class="col-lg-3 col-sm-6">
+          <a class="card-royal" href="FotoLabProductsPage.html?cat=accessory">
+            <div class="card-info">
+              <img src="FotoLabImages/RemoteIcon.png" class="card-icon" alt="Accessories">
+              <div class="card-text">
+                <div class="label">Accessories</div>
+                <div class="mini">Remotes, cleaning, adapters</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!---Submit Review-->
+
+  <div class="container" style="margin-top: 50px; max-width: 600px;">
+    <h3 class="gold-text text-center">Share Your Experience</h3>
+    <p class="text-center dim small">Become a part of the Fotolab legacy.</p>
+
+    <div class="review-form-box">
+      <form id="userReviewForm" onsubmit="submitReview(event)">
+        <input type="text" id="uName" placeholder="Your Name" required class="gold-input">
+        <textarea id="uMsg" placeholder="Write your magical review..." required class="gold-input"
+          style="min-height:80px;"></textarea>
+
+        <button type="submit" class="btn-primary full" style="margin-top:15px;">
+          ✨ Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+    /* --- DYNAMIC REVIEW SCRIPT --- */
+    function submitReview(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('uName').value;
+      const msg = document.getElementById('uMsg').value;
+
+      const avatars = [
+        "FotoLabImages/WooseokLogo.png",
+        "FotoLabImages/MinhoLogo.png",
+        "FotoLabImages/HanaLogo.png"
+      ];
+      const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+
+      const carouselInner = document.querySelector('#testi .carousel-inner');
+
+      const newItem = document.createElement('div');
+      newItem.className = 'carousel-item';
+
+      newItem.innerHTML = `
+        <div class="review-box">
+            <img src="${randomAvatar}" class="review-avatar" alt="User" onerror="this.src='https://via.placeholder.com/50?text=U'">
+            <div>
+                <div class="review-name">${name} ✨</div>
+                <blockquote class="quote">“${msg}”</blockquote>
+                <div style="font-size:10px; color:var(--gold); margin-top:5px;">Just Now</div>
+            </div>
+        </div>
+    `;
+
+      // List add 
+      carouselInner.appendChild(newItem);
+
+      // Form Reset & Success Message
+      document.getElementById('userReviewForm').reset();
+
+      // Magical Toast Notification 
+      if (typeof showToast === 'function') {
+        showToast("Review Added Successfully! ✨");
+      } else {
+        showToast("Your review is live! Thanks for the love ✨");
+      }
+
+      const myCarousel = document.getElementById('testi');
+      const bsCarousel = bootstrap.Carousel.getInstance(myCarousel);
+      const totalItems = document.querySelectorAll('.carousel-item').length;
+      bsCarousel.to(totalItems - 1);
+    }
+
+  </script>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="testimonials">
+    <div class="container">
+      <h3 class="section-title">What clients say</h3>
+
+      <div id="testi" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Review 1 -->
+          <div class="carousel-item active">
+            <div class="review-box">
+              <img src="FotoLabImages/WooseokLogo.png" class="review-avatar" alt="Jiwoo">
+              <div>
+                <div class="review-name">Wooseok ✨</div>
+                <blockquote class="quote">“Fotolab turned our wedding into a cinematic dream 💍📸”</blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 2 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/MinhoLogo.png" class="review-avatar" alt="Minho">
+              <div>
+                <div class="review-name">Minho 💫</div>
+                <blockquote class="quote">“Royal lighting, perfect framing — felt like a movie.”</blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 3 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/SoojinLogo.png" class="review-avatar" alt="Soojin">
+              <div>
+                <div class="review-name">Soojin 🌙</div>
+                <blockquote class="quote">“Luxury vibes and zero stress — I’m obsessed.”</blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 4 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/HyunwoLogo.png" class="review-avatar" alt="Hyunwoo">
+              <div>
+                <div class="review-name">Hyunwoo 📷</div>
+                <blockquote class="quote">“Every shot felt like royalty. The colors, the mood — pure magic.”
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 5 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/EunjiLogo.png" class="review-avatar" alt="Eunji">
+              <div>
+                <div class="review-name">Eunji 💫</div>
+                <blockquote class="quote">“From booking to delivery — smooth, cinematic, unforgettable.”</blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 6 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/TaeyanLogo.png" class="review-avatar" alt="Taeyang">
+              <div>
+                <div class="review-name">Taeyang 🌟</div>
+                <blockquote class="quote">“The attention to detail made our shoot feel like art.”</blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 7 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/HanaLogo.png" class="review-avatar" alt="Hana">
+              <div>
+                <div class="review-name">Hana 🌸</div>
+                <blockquote class="quote">“Every frame carried emotion — truly unforgettable.”</blockquote>
+              </div>
+            </div>
+          </div>
+          <!-- Review 8 -->
+          <div class="carousel-item">
+            <div class="review-box">
+              <img src="FotoLabImages/ShinhyeLogo.png" class="review-avatar" alt="Shinhye">
+              <div>
+                <div class="review-name">Shinhye 💫</div>
+                <blockquote class="quote">“Fotolab gave us memories that feel timeless and royal.”</blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#testi" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testi" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+
+  <footer class="fotolab-footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6 footer-col">
+          <img src="FotoLabImages/FotolabLogo.png" alt="Fotolab" class="footer-logo">
+          <p class="footer-desc">
+            Empowering creators with the finest photography gear since 1991. Where light meets luxury.
+          </p>
+
+          <h5 class="footer-heading">Opening Hours</h5>
+          <ul class="footer-hours">
+            <li><span>Mon - Sat</span> <span>09 Am - 09 Pm</span></li>
+            <li><span>Sunday</span> <span style="color: #ff4757;">09 Am - 05 Pm</span></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-col">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="FotoLabHome.html">Home</a></li>
+            <li><a href="FotoLabAboutPage.html">About Us</a></li>
+            <li><a href="FotoLabContactPage.html">Contact Us</a></li>
+            <li><a href="javascript:void(0)" onclick="openSigninModal()">Member Login</a></li>
+            <li><a href="javascript:void(0)" onclick="openSignupModal()">Register</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-heading">Our Collections</h5>
+          <ul class="footer-links">
+            <li><a href="FotoLabProductsPage.html?cat=camera">Digital Cameras</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=lens">Premium Lenses</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=audio">Pro Audio Gear</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=lighting">Studio Lighting</a></li>
+            <li><a href="FotoLabProductsPage.html?cat=tripod">Stabilizers & Tripods</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-heading">Contact Us</h5>
+          <ul class="contact-list">
+            <li><i class="bi bi-telephone-fill"></i> +82 10 1234 5678</li>
+            <li><i class="bi bi-envelope-fill"></i> support@fotolab.kr</li>
+            <li><i class="bi bi-geo-alt-fill"></i> Gangnam-gu, Seoul, Korea</li>
+          </ul>
+
+          <h5 class="footer-heading" style="margin-top: 20px;">Follow @Fotolab</h5>
+          <div class="footer-socials">
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Fotolab — All Rights Reserved | Privacy Statement</p>
+    </div>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <i class="bi bi-chevron-up"></i>
+    </button>
+  </footer>
+
+  <script>
+
+    // Initialize testimonials carousel (optional timing tweak)
+    const testi = document.getElementById('testi');
+    if (testi && window.bootstrap) {
+      new bootstrap.Carousel(testi, { interval: 3800, ride: true });
+    }
+
+    // Footer links to existing modals/chat (if present in your code)
+    const fsu = document.getElementById('footerSignup');
+    if (fsu && typeof openSignupModal === 'function') {
+      fsu.addEventListener('click', e => { e.preventDefault(); openSignupModal(); });
+    }
+    const fsup = document.getElementById('footerSupport');
+    if (fsup && typeof openChatbot === 'function') {
+      fsup.addEventListener('click', e => { e.preventDefault(); openChatbot(); });
+    }
+
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    const footer = document.querySelector(".fotolab-footer");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          scrollBtn.classList.add("show");
+        } else {
+          scrollBtn.classList.remove("show");
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1
+    });
+
+    if (footer) {
+      observer.observe(footer);
+    }
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+  </script>
+
+  <script>
+    /* ==================================================
+       MAGICAL SEARCH INTELLIGENCE (FINAL FIX V2)
+       ================================================== */
+
+    const searchKeywords = [
+      { name: "Canon Cameras", params: "brand=Canon&cat=camera" },
+      { name: "Sony Alpha Cameras", params: "brand=Sony&cat=camera" },
+      { name: "Nikon Z Series", params: "brand=Nikon&cat=camera" },
+      { name: "Fujifilm GFX", params: "brand=Fujifilm&cat=camera" },
+      { name: "Canon Lenses", params: "brand=Canon&cat=lens" },
+      { name: "Sony Lenses", params: "brand=Sony&cat=lens" },
+      { name: "Rode Microphones", params: "brand=Rode&cat=audio" },
+      { name: "Godox Lighting", params: "brand=Godox&cat=lighting" },
+      { name: "Manfrotto Tripods", params: "brand=Manfrotto&cat=tripod" },
+      { name: "SanDisk Memory", params: "brand=SanDisk&cat=memory" },
+      { name: "Camera Bags", params: "cat=bag" }
+    ];
+
+    const suggestionsBox = document.getElementById('suggestionsBox');
+    const searchInput = document.getElementById('searchInput');
+
+    function handleSearch(query) {
+      const value = query.toLowerCase().trim();
+
+      if (!suggestionsBox) return;
+      suggestionsBox.innerHTML = '';
+
+      if (value.length < 1) {
+        suggestionsBox.style.display = 'none';
+        return;
+      }
+
+      // Filter Logic
+      const matches = searchKeywords.filter(item =>
+        item.name.toLowerCase().includes(value)
+      );
+
+      suggestionsBox.style.display = 'flex';
+
+      if (matches.length > 0) {
+        matches.forEach(match => {
+          const div = document.createElement('div');
+          div.className = 'suggestion-item';
+          div.innerHTML = `<i class="bi bi-search"></i> ${match.name}`;
+
+          div.onclick = () => {
+            window.location.href = `FotoLabProductsPage.html?${match.params}`;
+          };
+          suggestionsBox.appendChild(div);
+        });
+      } else {
+        suggestionsBox.innerHTML = `<div class="no-result">✨ No magical items found for "${query}"</div>`;
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          const term = searchInput.value;
+          window.location.href = `FotoLabProductsPage.html?search=${encodeURIComponent(term)}`;
+        }
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (searchInput && suggestionsBox) {
+        if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+          suggestionsBox.style.display = 'none';
+        }
+      }
+    });
+  </script>
+
+  <script>
+    const DB = { user: null };
+
+    function showModal(id) { document.getElementById(id).setAttribute('aria-hidden', 'false'); }
+    function hideModal(id) { document.getElementById(id).setAttribute('aria-hidden', 'true'); }
+
+    // OPEN MODALS
+    document.getElementById('navSignupBtn').addEventListener('click', () => showModal('signupModal'));
+    document.getElementById('navSigninBtn').addEventListener('click', () => showModal('signinModal'));
+
+    // CLOSE MODALS WITH CROSS BUTTON
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('.fotolab-modal');
+        if (modal) modal.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // LINK SWITCH
+    document.getElementById('linkToSignin').addEventListener('click', e => {
+      e.preventDefault();
+      hideModal('signupModal');
+      showModal('signinModal');
+      if (DB.user) document.getElementById('signinEmail').value = DB.user.email;
+    });
+    document.getElementById('linkToSignup').addEventListener('click', e => {
+      e.preventDefault();
+      hideModal('signinModal');
+      showModal('signupModal');
+    });
+
+    // REGISTER FORM
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // Inputs
+      const nameIn = document.getElementById('regName');
+      const emailIn = document.getElementById('regEmail');
+      const phoneIn = document.getElementById('regPhone');
+      const addIn = document.getElementById('regAddress');
+      const postIn = document.getElementById('regPostal');
+      const passIn = document.getElementById('regPass');
+      const btn = document.getElementById('btnRegister');
+
+      // Error Divs
+      const errName = document.getElementById('errName');
+      const errEmail = document.getElementById('errEmail');
+      const errPhone = document.getElementById('errPhone');
+      const errPass = document.getElementById('errPass');
+
+      // --- HELPER: SHOW ERROR ---
+      function showError(input, div, msg) {
+        input.classList.remove('input-success');
+        input.style.border = "1px solid #ff4757";
+        div.innerText = msg;
+        div.classList.add('error-visible');
+      }
+
+      // --- HELPER: SHOW SUCCESS ---
+      function showSuccess(input, div) {
+        input.classList.add('input-success');
+        input.style.border = "1px solid #2ed573";
+        div.innerText = "";
+        div.classList.remove('error-visible');
+      }
+
+      // --- 1. REAL-TIME CHECKING ---
+
+      // Name Check
+      nameIn.addEventListener('input', function () {
+        const val = this.value.trim();
+        if (/\d/.test(val)) {
+          showError(this, errName, "Numbers not allowed in name!");
+          return;
+        }
+        if (val.length < 3) {
+          showError(this, errName, "Name is too short (Min 3 chars)");
+          emailIn.disabled = true;
+        } else {
+          showSuccess(this, errName);
+          emailIn.disabled = false;
+        }
+      });
+
+      // Email Check
+      emailIn.addEventListener('input', function () {
+        const val = this.value.trim();
+        if (!val.includes('@')) {
+          showError(this, errEmail, "Missing '@' symbol");
+          phoneIn.disabled = true;
+        } else if (!val.includes('.')) {
+          showError(this, errEmail, "Missing domain (e.g. .com)");
+          phoneIn.disabled = true;
+        } else {
+          showSuccess(this, errEmail);
+          phoneIn.disabled = false;
+        }
+      });
+
+      // Phone Check
+      phoneIn.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        if (this.value.length < 11) {
+          showError(this, errPhone, "Must be exactly 11 digits");
+          if (addIn) addIn.disabled = true;
+          if (postIn) postIn.disabled = true;
+        } else {
+          showSuccess(this, errPhone);
+          if (addIn) addIn.disabled = false;
+          if (postIn) postIn.disabled = false;
+        }
+      });
+
+      // Address & Post Check
+      function checkAddr() {
+        if (addIn.value && postIn.value) passIn.disabled = false;
+        else passIn.disabled = true;
+      }
+      addIn.addEventListener('input', checkAddr);
+      postIn.addEventListener('input', checkAddr);
+
+      // Password Check
+      passIn.addEventListener('input', function () {
+        const val = this.value;
+        const isStrong = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$/.test(val);
+        if (!isStrong) {
+          showError(this, errPass, "Weak! Need: 1 Upper, 1 Special (@#$), 1 Number, 8 Chars");
+        } else {
+          showSuccess(this, errPass);
+        }
+      });
+
+      // --- 2. FINAL SUBMIT (RESTORED LOGIC) ---
+      document.getElementById('signupForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Check All Again
+        const isName = nameIn.value.length >= 3;
+        const isEmail = emailIn.value.includes('@') && emailIn.value.includes('.');
+        const isPhone = phoneIn.value.length === 11;
+        const isPass = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$/.test(passIn.value);
+
+        if (isName && isEmail && isPhone && isPass) {
+          DB.user = {
+            name: nameIn.value,
+            email: emailIn.value.toLowerCase(),
+            password: passIn.value
+          };
+
+          // 2. SUCCESS MESSAGE
+          if (typeof showToast === 'function') {
+            showToast("Account Created Successfully! Redirecting to Login...", "success");
+          } else {
+            alert("Account Created! Redirecting...");
+          }
+
+          // 3. AUTO SWITCH TO LOGIN (AFTER 1.5 SEC)
+          setTimeout(() => {
+            // Register Band
+            if (typeof hideModal === 'function') hideModal('signupModal');
+
+            // Login
+            if (typeof showModal === 'function') showModal('signinModal');
+
+            // 4. AUTO FILL EMAIL
+            const loginEmailInput = document.getElementById('signinEmail');
+            if (loginEmailInput) {
+              loginEmailInput.value = DB.user.email;
+            }
+          }, 1500);
+
+        } else {
+          if (typeof showToast === 'function') {
+            showToast("Please fix the errors in red!", "error");
+          } else {
+            alert("Please fix the errors!");
+          }
+        }
+      });
+    });
+
+    // LOGIN FORM
+    document.getElementById('signinForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('signinEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('signinPassword').value.trim();
+      const msgEl = document.getElementById('signinMsg');
+      if (!DB.user) {
+        msgEl.textContent = '⚠️ No account found. Please register yourself first.';
+        return;
+      }
+      if (email === DB.user.email && pass === DB.user.password) {
+        msgEl.textContent = '';
+        document.getElementById('userNameShow').textContent = DB.user.name;
+        document.getElementById('userEmailShow').textContent = DB.user.email;
+        document.getElementById('userProfile').hidden = false;
+        setTimeout(() => hideModal('signinModal'), 650);
+      } else {
+        msgEl.textContent = '❌ Incorrect email or password.';
+      }
+    });
+
+    // ESC key closes modal
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        hideModal('signupModal');
+        hideModal('signinModal');
+      }
+    });
+  </script>
+
+  <script>
+    function qs(id) { return document.getElementById(id); }
+    // ###############################
+    // CHATBOT behavior
+    // ###############################
+    const chatBox = qs('chatbotBox');
+    const chatClose = qs('chatCloseBtn');
+    const chatSend = qs('chatSendBtn');
+    const chatInput = qs('chatInput');
+    const chatBody = qs('chatBody');
+    const assistantSub = qs('assistantSub');
+
+    function appendUserBubble(text) {
+      const d = document.createElement('div');
+      d.className = 'user-bubble';
+      d.textContent = text;
+      chatBody.appendChild(d);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+    function appendBotBubble(text) {
+      const d = document.createElement('div');
+      d.className = 'bot-bubble';
+      d.textContent = text;
+      chatBody.appendChild(d);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    window.openChatbot = function () {
+      if (!chatBox) return;
+      chatBox.style.display = 'flex';
+      chatBox.setAttribute('aria-hidden', 'false');
+      chatBox.animate([{ transform: 'translateY(12px)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 260, easing: 'cubic-bezier(.2,.9,.2,1)' });
+    };
+
+    window.closeChatbot = function () {
+      if (!chatBox) return;
+      chatBox.style.display = 'none';
+      chatBox.setAttribute('aria-hidden', 'true');
+    };
+
+    window.openSignupModal = function () { showModal('signupModal'); };
+    window.openSigninModal = function () { showModal('signinModal'); };
+    window.openChatbot = window.openChatbot;
+    const supportButton = qs('supportBtn');
+    if (supportButton) supportButton.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      if (chatBox.style.display === 'flex') {
+        chatBox.style.display = 'flex';
+      } else {
+        chatBox.style.display = 'flex';
+        chatBox.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    if (chatClose) chatClose.addEventListener('click', function () { chatBox.style.display = 'none'; chatBox.setAttribute('aria-hidden', 'true'); });
+
+    // send message action
+    if (chatSend) chatSend.addEventListener('click', doSendMessage);
+    if (chatInput) chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSendMessage(); });
+
+    function doSendMessage() {
+      const txt = chatInput.value.trim();
+      if (!txt) return;
+      appendUserBubble(txt);
+      chatInput.value = '';
+      setTimeout(() => appendBotBubble('Thanks — we received your message. Our team will contact you soon.'), 650);
+
+      if (DB.user) assistantSub.textContent = `Hi ${DB.user.name}, how can I help?`;
+      else assistantSub.textContent = `We'll get back to you soon`;
+    }
+
+    document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+    // ==========================================
+    // FOOTER CONNECTION 
+    // ==========================================
+
+    // 1. Footer Sign Up -> Opens Signup Modal
+    const footerSignup = document.getElementById('footerSignupBtn');
+    if (footerSignup) {
+      footerSignup.addEventListener('click', function (e) {
+        e.preventDefault();
+        showModal('signupModal');
+      });
+    }
+
+    // 2. Footer Support -> Opens Chatbot
+    const footerSupport = document.getElementById('footerSupportBtn');
+    if (footerSupport) {
+      footerSupport.addEventListener('click', function (e) {
+        e.preventDefault();
+        const chatBox = document.getElementById('chatbotBox');
+        chatBox.style.display = 'flex';
+        chatBox.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+  </script>
+
+  <script>
+
+    /* --- ROBUST TOAST FUNCTION --- */
+    function showToast(message, type = 'success') {
+      let container = document.getElementById('toast-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+      }
+
+      // 2. Icon 
+      let iconClass = type === 'error' ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill';
+      let iconColor = type === 'error' ? '#ff4757' : '#E5C07B';
+
+      const toast = document.createElement('div');
+      toast.className = 'vip-toast';
+      toast.innerHTML = `
+        <i class="bi ${iconClass}" style="color:${iconColor}"></i>
+        <span class="vip-toast-text">${message}</span>
+    `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'slideOutRight 0.5s forwards';
+        setTimeout(() => {
+          if (toast.parentNode) toast.remove();
+        }, 500);
+      }, 4000);
+    }
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
